@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.FXMLController">
+   <bottom>
+      <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Reset" BorderPane.alignment="BOTTOM_RIGHT">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="50.0" right="10.0" top="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+   <top>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="GESTIONE NBA TEAM" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" top="10.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Scegli la squadra">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="boxSquadra">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="50.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Button fx:id="btnConferma" mnemonicParsing="false" onAction="#doConferma" text="Conferma">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="50.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="lbSquadra" translateX="-80.0" translateY="20.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fx:id="immNBA" fitHeight="120.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../../../nbalogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="Roster">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvRoster">
+                          <columns>
+                            <TableColumn fx:id="tbNomeRoster" prefWidth="100.0" text="Nome" />
+                            <TableColumn prefWidth="50.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Button fx:id="btnCedi" alignment="CENTER" mnemonicParsing="false" onAction="#doCedi" text="Cedi">
+                           <VBox.margin>
+                              <Insets left="5.0" top="75.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnStatisticheSx" mnemonicParsing="false" onAction="#doStatisticheSx" text="Statistiche">
+                           <VBox.margin>
+                              <Insets left="5.0" top="200.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <ImageView fx:id="immEst" fitHeight="104.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Desktop/TESI/Wizards.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="15.0" right="15.0" top="30.0" />
+                           </VBox.margin>
+                           <viewport>
+                              <Rectangle2D minX="170.0" minY="104.0" />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="immWest" fitHeight="111.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="175.0" />
+                           </VBox.margin>
+                           <image>
+                              <Image url="@../../../../westernlogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Button fx:id="btnAcquista" mnemonicParsing="false" onAction="#doAcquista" text="Acquista">
+                           <VBox.margin>
+                              <Insets right="5.0" top="75.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnStatisticheDx" mnemonicParsing="false" onAction="#doStatisticheDx" text="Statistiche">
+                           <VBox.margin>
+                              <Insets right="5.0" top="200.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox>
+                           <children>
+                              <Button fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Label text="Cerca">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="boxCaratteristiche">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <Button fx:id="btnConfermaTipo" mnemonicParsing="false" onAction="#doConfermaTipo" text="Conferma">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <TableView fx:id="tvCerca">
+                                <columns>
+                                  <TableColumn fx:id="tbNomeCerca" prefWidth="100.0" text="Nome" />
+                                  <TableColumn prefWidth="50.0" text="C2" />
+                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                </columns>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </TableView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
