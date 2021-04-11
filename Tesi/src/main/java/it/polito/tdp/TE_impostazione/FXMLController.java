@@ -1,20 +1,31 @@
 package it.polito.tdp.TE_impostazione;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.TE_impostazione.model.Giocatore;
 import it.polito.tdp.TE_impostazione.model.Model;
 import it.polito.tdp.TE_impostazione.model.Squadre;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextField;
+import javafx.scene.control.MenuButton;
 
 public class FXMLController {
 
@@ -33,6 +44,12 @@ public class FXMLController {
     private Button btnStatisticheSx;
     
     @FXML
+    private TextField txtGiocatore;
+
+    @FXML
+    private Label lbnRicercaGiocatore;
+    
+    @FXML
     private Button btnStatisticheDx;
 
     @FXML
@@ -45,10 +62,19 @@ public class FXMLController {
     private Button btnConferma;
     
     @FXML
-    private TableView<?> tvRoster;
+    private TableView<Giocatore> tvRoster;
 
     @FXML
-    private TableColumn<?, ?> tbNomeRoster;
+    private TableColumn<Giocatore, String > tbNomeRoster;
+    
+    @FXML
+    private TableColumn<Giocatore, Float> tbPointsRoster;
+
+    @FXML
+    private TableColumn<Giocatore, Float> tbAssistsRoster;
+
+    @FXML
+    private TableColumn<Giocatore, Float> tbReboundsRoster;
 
     @FXML
     private Button btnCedi;
@@ -67,10 +93,22 @@ public class FXMLController {
     private Button btnAcquista;
     
     @FXML
-    private TableView<?> tvCerca;
+    private TableView<Giocatore> tvCerca;
+    
+    @FXML
+    private MenuButton mnPosizione;
 
     @FXML
-    private TableColumn<?, ?> tbNomeCerca;
+    private TableColumn<Giocatore, String> tbNomeCerca;
+    
+    @FXML
+    private TableColumn<Giocatore, Float> tcPointCerca;
+
+    @FXML
+    private TableColumn<Giocatore, Float> tcAssistCerca;
+
+    @FXML
+    private TableColumn<Giocatore, Float> tcReboundCerca;
 
     @FXML
     private Button btnDettagli;
@@ -152,8 +190,28 @@ public class FXMLController {
     }
     
     @FXML
-    void doStatisticheSx(ActionEvent event) {
-
+    void doStatisticheSx(ActionEvent event) throws IOException {
+    	Giocatore g=tvRoster.getSelectionModel().getSelectedItem();
+    	if(g!=null) {
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Stat.fxml"));
+    	Parent root=loader.load();
+    	StatController controller= loader.getController();
+    	
+    	Scene scene= new Scene(root);
+    	scene.getStylesheets().add("/styles/Styles.css");
+    	
+    	Model ml=new Model();
+    	controller.setModel(ml,g);
+    	
+    	Stage s=new Stage();
+    	s.setTitle("Statistiche avanzate");
+    	s.setScene(scene);
+    	s.setX(+565.0);
+    	s.setY(+500.0);
+    	s.show();
+    	}
+    	
+    	
     }
 
     @FXML
@@ -301,12 +359,38 @@ public class FXMLController {
     			immWest.setImage(wizard);
     		}//30
     		
+    		
+    		ObservableList<Giocatore> roster=FXCollections.observableArrayList(model.getRoster(scelta));
+    		tvRoster.setItems(roster);
+    		tbNomeRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+    		tbPointsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
+    		tbAssistsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+    		tbReboundsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		
     	}
     }
 
     @FXML
     void doConfermaTipo(ActionEvent event) {
-
+    	tvCerca.setItems(null);
+    	lbnRicercaGiocatore.setText("");
+    	String g_cerca=txtGiocatore.getText();
+    	
+    	if(g_cerca.length()==0){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
+    		lbnRicercaGiocatore.setText("Scegliere giocatore");
+    	}
+    	else {
+    		ObservableList<Giocatore> giocatore=FXCollections.observableArrayList(model.getGiocatore(g_cerca));
+    		if(giocatore.size()==0) {
+    			lbnRicercaGiocatore.setText("Non esistente");
+    		}
+    		tvCerca.setItems(giocatore);
+    		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+    		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
+    		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+    		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		
+    	}
     }
 
     @FXML
@@ -315,8 +399,26 @@ public class FXMLController {
     }
     
     @FXML
-    void doStatisticheDx(ActionEvent event) {
-
+    void doStatisticheDx(ActionEvent event) throws IOException {
+    	Giocatore g=tvCerca.getSelectionModel().getSelectedItem();
+    	if(g!=null) {
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Stat.fxml"));
+    	Parent root=loader.load();
+    	StatController controller= loader.getController();
+    	
+    	Scene scene= new Scene(root);
+    	scene.getStylesheets().add("/styles/Styles.css");
+    	
+    	Model ml=new Model();
+    	controller.setModel(ml,g);
+    	
+    	Stage s=new Stage();
+    	s.setTitle("Statistiche avanzate");
+    	s.setScene(scene);
+    	s.setX(+565.0);
+    	s.setY(+500.0);
+    	s.show();
+    	}
     }
 
     @FXML
