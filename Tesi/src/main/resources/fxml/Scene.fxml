@@ -109,7 +109,7 @@
                               <Insets left="2.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="Giocatore1" text="Lebron James">
+                        <Label fx:id="Giocatore1">
                            <VBox.margin>
                               <Insets left="2.0" top="2.0" />
                            </VBox.margin>
@@ -117,7 +117,7 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Giocatore2" text="Label">
+                        <Label fx:id="Giocatore2">
                            <VBox.margin>
                               <Insets left="2.0" top="2.0" />
                            </VBox.margin>
@@ -125,7 +125,7 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Giocatore3" text="Label">
+                        <Label fx:id="Giocatore3">
                            <VBox.margin>
                               <Insets left="2.0" top="2.0" />
                            </VBox.margin>

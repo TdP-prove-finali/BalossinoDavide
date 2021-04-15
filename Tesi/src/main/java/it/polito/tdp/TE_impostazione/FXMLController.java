@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import it.polito.tdp.TE_impostazione.model.Giocatore;
 import it.polito.tdp.TE_impostazione.model.Model;
@@ -84,6 +86,18 @@ public class FXMLController {
 
     @FXML
     private Button btnCedi;
+    
+    @FXML
+    private Label Giocatore1;
+
+    @FXML
+    private Label Giocatore2;
+
+    @FXML
+    private Label Giocatore3;
+
+    @FXML
+    private Button btnCercaLista;
 
     @FXML
     private ImageView immEst;
@@ -128,8 +142,8 @@ public class FXMLController {
     @FXML
     private ChoiceBox<String> boxCaratteristiche;
     
-    File fileEst = new File("im/easternlogo.png");
-    Image estlogo=new Image((fileEst.toURI().toString()));
+    private  File fileEst = new File("im/easternlogo.png");
+    Image estlogo=new Image((fileEst.toURI().toString())); //mettere private
 	File fileWest = new File("im/westernlogo.png");
 	Image westlogo= new Image((fileWest.toURI().toString()));
 	File fileHawks = new File("im/Hawks.png");
@@ -193,6 +207,9 @@ public class FXMLController {
 	File fileWizard = new File("im/Wizards.png");
 	Image wizard=new Image(fileWizard.toURI().toString());
 	
+	
+	
+
     @FXML
     private Button btnConfermaTipo;
 
@@ -228,12 +245,72 @@ public class FXMLController {
 
     @FXML
     void doCedi(ActionEvent event) {
-
+    	Giocatore g=tvRoster.getSelectionModel().getSelectedItem();
+    	if(g!=null) {
+    		boolean b=model.giaDaCedere(g);
+    		if(!b) {
+    			model.aggiungiDaCedere(g);
+    		    setLabelDaCedere();
+    		    return;
+    		}
+    		else {
+    			model.rimuoviDaCedere(g);
+    			setLabelDaCedere();
+    			return;
+    		}
+    	}
+    }
+    
+    private void setLabelDaCedere() {
+    	Giocatore1.setText("");
+    	Giocatore2.setText("");
+    	Giocatore3.setText("");
+    	
+    	Set<Giocatore> g=model.selezionati();
+    	if(g.size()==1) {
+    		for(Giocatore gi: g) {
+    		Giocatore1.setText(gi.getNome());
+    		}
+    		return;
+    	}
+    	if(g.size()==2) {
+    		for(Giocatore gi: g) {
+    		if(Giocatore1.getText().equals(""))
+    		Giocatore1.setText(gi.getNome());
+    		if(Giocatore2.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false)
+        		Giocatore2.setText(gi.getNome());
+    		}
+    		return;
+    	}
+    	if(g.size()==3) {
+    		for(Giocatore gi: g) {
+    		if(Giocatore1.getText().equals(""))
+    		Giocatore1.setText(gi.getNome());
+    		if(Giocatore2.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false)
+        		Giocatore2.setText(gi.getNome());
+    		if(Giocatore3.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false && gi.getNome().equals(Giocatore2.getText())==false)
+        		Giocatore3.setText(gi.getNome());
+    		}
+    		return;
+    	}
+    	if(g.size()==0) {
+    		Giocatore2.setText("");
+    		Giocatore3.setText("");
+    		Giocatore1.setText("");
+    		return;
+    	}
+    }
+    
+    @FXML
+    void doCercaLista(ActionEvent event) {
+    	
     }
 
     @FXML
     void doConferma(ActionEvent event) {
     	lbSquadra.setText("");
+    	
+    	
     	
     	
     	//impostazione delle immagini a seguito della scelta della squadra
