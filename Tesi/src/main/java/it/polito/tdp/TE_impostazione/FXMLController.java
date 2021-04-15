@@ -3,6 +3,8 @@ package it.polito.tdp.TE_impostazione;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.TE_impostazione.model.Giocatore;
@@ -25,7 +27,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.control.MenuButton;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.CheckBox;
 
 public class FXMLController {
 
@@ -48,6 +51,9 @@ public class FXMLController {
 
     @FXML
     private Label lbnRicercaGiocatore;
+    
+    @FXML
+    private HBox hbox2;
     
     @FXML
     private Button btnStatisticheDx;
@@ -96,7 +102,13 @@ public class FXMLController {
     private TableView<Giocatore> tvCerca;
     
     @FXML
-    private MenuButton mnPosizione;
+    private CheckBox bxGuardia;
+
+    @FXML
+    private CheckBox bxForward;
+
+    @FXML
+    private CheckBox bxCentro;
 
     @FXML
     private TableColumn<Giocatore, String> tbNomeCerca;
@@ -376,10 +388,11 @@ public class FXMLController {
     	lbnRicercaGiocatore.setText("");
     	String g_cerca=txtGiocatore.getText();
     	
-    	if(g_cerca.length()==0){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
+    	if(g_cerca.length()==0 || (bxGuardia.isSelected()==false && bxForward.isSelected()==false && bxCentro.isSelected()==false)){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
     		lbnRicercaGiocatore.setText("Scegliere giocatore");
     	}
     	else {
+    		
     		ObservableList<Giocatore> giocatore=FXCollections.observableArrayList(model.getGiocatore(g_cerca));
     		if(giocatore.size()==0) {
     			lbnRicercaGiocatore.setText("Non esistente");
@@ -392,10 +405,27 @@ public class FXMLController {
     		
     	}
     }
+    
+    
 
     @FXML
-    void doDettagli(ActionEvent event) {
-
+    void doDettagli(ActionEvent event) throws IOException {
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/dettagli.fxml"));
+    	Parent root=loader.load();
+    	DettagliController controller= loader.getController();
+    	
+    	Scene scene= new Scene(root);
+    	scene.getStylesheets().add("/styles/Styles.css");
+    	
+    	Model ml=new Model();
+    	controller.setModel(ml);
+    	
+    	Stage s=new Stage();
+    	s.setTitle("Dettagli");
+    	s.setScene(scene);
+    	s.setX(+790.0);
+    	s.setY(+5.0);
+    	s.show();
     }
     
     @FXML
@@ -421,6 +451,23 @@ public class FXMLController {
     	}
     }
 
+    
+    
+ //   @FXML
+  //  void doPosizione(ActionEvent event) {
+    	
+  //  }
+    
+    
+  /* @FXML
+   	void doGuardia(ActionEvent event) {
+	//   mnPosizione.setOnShowing(mnPosizione);
+	    mnPosizione.show();
+   } */
+   	
+    
+    
+    
     @FXML
     void doReset(ActionEvent event) {
 
@@ -430,19 +477,37 @@ public class FXMLController {
 
     @FXML
     void initialize() {
-        assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert boxSquadra != null : "fx:id=\"boxSquadra\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnConferma != null : "fx:id=\"btnConferma\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnCedi != null : "fx:id=\"btnCedi\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert immEst != null : "fx:id=\"immEst\" was not injected: check your FXML file 'Scene.fxml'.";
-       
-        assert immWest != null : "fx:id=\"immWest\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnAcquista != null : "fx:id=\"btnAcquista\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnDettagli != null : "fx:id=\"btnDettagli\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert boxCaratteristiche != null : "fx:id=\"boxCaratteristiche\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnConfermaTipo != null : "fx:id=\"btnConfermaTipo\" was not injected: check your FXML file 'Scene.fxml'.";
+    	 assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert boxSquadra != null : "fx:id=\"boxSquadra\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnConferma != null : "fx:id=\"btnConferma\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert lbSquadra != null : "fx:id=\"lbSquadra\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert immNBA != null : "fx:id=\"immNBA\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert hbox2 != null : "fx:id=\"hbox2\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tvRoster != null : "fx:id=\"tvRoster\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tbNomeRoster != null : "fx:id=\"tbNomeRoster\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tbPointsRoster != null : "fx:id=\"tbPointsRoster\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tbAssistsRoster != null : "fx:id=\"tbAssistsRoster\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tbReboundsRoster != null : "fx:id=\"tbReboundsRoster\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnCedi != null : "fx:id=\"btnCedi\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnStatisticheSx != null : "fx:id=\"btnStatisticheSx\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert immEst != null : "fx:id=\"immEst\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert immWest != null : "fx:id=\"immWest\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert txtGiocatore != null : "fx:id=\"txtGiocatore\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert lbnRicercaGiocatore != null : "fx:id=\"lbnRicercaGiocatore\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnAcquista != null : "fx:id=\"btnAcquista\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnStatisticheDx != null : "fx:id=\"btnStatisticheDx\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnConfermaTipo != null : "fx:id=\"btnConfermaTipo\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert boxCaratteristiche != null : "fx:id=\"boxCaratteristiche\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert bxGuardia != null : "fx:id=\"bxGuardia\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert bxForward != null : "fx:id=\"bxForward\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert bxCentro != null : "fx:id=\"bxCentro\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnDettagli != null : "fx:id=\"btnDettagli\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tvCerca != null : "fx:id=\"tvCerca\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tbNomeCerca != null : "fx:id=\"tbNomeCerca\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tcPointCerca != null : "fx:id=\"tcPointCerca\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tcAssistCerca != null : "fx:id=\"tcAssistCerca\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert tcReboundCerca != null : "fx:id=\"tcReboundCerca\" was not injected: check your FXML file 'Scene.fxml'.";
 
-        
     }
 
 	public void setModel(Model model2) {
@@ -457,6 +522,18 @@ public class FXMLController {
 		immNBA.setImage(new Image(file3.toURI().toString()));
 		
 		boxSquadra.getItems().addAll(model.getNomiSquadre());
+		
+		List<String> archetipi=new ArrayList<String>();
+		archetipi.add("Scorer");
+		archetipi.add("Assistman");
+		archetipi.add("Stoppatore");
+		archetipi.add("Uomo squadra");
+		archetipi.add("Tiratore da 3");
+		archetipi.add("Tiratore da 2");
+		archetipi.add("Rimbalzista");
+		boxCaratteristiche.getItems().addAll(archetipi);
+		
+		
 		
 	}
     

@@ -3,10 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -73,7 +72,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox>
+            <HBox fx:id="hbox2">
                <children>
                   <VBox>
                      <children>
@@ -88,12 +87,12 @@
                         <TableView fx:id="tvRoster">
                           <columns>
                             <TableColumn fx:id="tbNomeRoster" prefWidth="100.0" text="Nome" />
-                            <TableColumn fx:id="tbPointsRoster" prefWidth="71.0" text="Points" />
+                            <TableColumn fx:id="tbPointsRoster" prefWidth="71.0" text="Punti" />
                               <TableColumn fx:id="tbAssistsRoster" prefWidth="64.0" text="Assists" />
-                              <TableColumn fx:id="tbReboundsRoster" prefWidth="65.0" text="Rebounds" />
+                              <TableColumn fx:id="tbReboundsRoster" prefWidth="65.0" text="Rimbalzi" />
                           </columns>
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="10.0" top="15.0" />
                            </VBox.margin>
                         </TableView>
                      </children>
@@ -105,9 +104,43 @@
                               <Insets left="5.0" top="75.0" />
                            </VBox.margin>
                         </Button>
+                        <Label text="Lista:">
+                           <VBox.margin>
+                              <Insets left="2.0" top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="Giocatore1" text="Lebron James">
+                           <VBox.margin>
+                              <Insets left="2.0" top="2.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Giocatore2" text="Label">
+                           <VBox.margin>
+                              <Insets left="2.0" top="2.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Giocatore3" text="Label">
+                           <VBox.margin>
+                              <Insets left="2.0" top="2.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnCercaLista" mnemonicParsing="false" onAction="#doCercaLista" text="Cerca">
+                           <VBox.margin>
+                              <Insets left="5.0" top="30.0" />
+                           </VBox.margin>
+                        </Button>
                         <Button fx:id="btnStatisticheSx" mnemonicParsing="false" onAction="#doStatisticheSx" text="Statistiche">
                            <VBox.margin>
-                              <Insets left="5.0" top="200.0" />
+                              <Insets left="5.0" top="90.0" />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -150,7 +183,7 @@
                         </Button>
                         <Button fx:id="btnStatisticheDx" mnemonicParsing="false" onAction="#doStatisticheDx" text="Statistiche">
                            <VBox.margin>
-                              <Insets left="25.0" right="5.0" top="200.0" />
+                              <Insets left="25.0" right="5.0" top="233.0" />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -174,15 +207,28 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <MenuButton fx:id="mnPosizione" mnemonicParsing="false" text="Pos">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
+                              <VBox>
+                                 <children>
+                                    <CheckBox fx:id="bxGuardia" mnemonicParsing="false" selected="true" text="G">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="bxForward" mnemonicParsing="false" selected="true" text="F">
+                                       <VBox.margin>
+                                          <Insets top="1.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="bxCentro" mnemonicParsing="false" selected="true" text="C">
+                                       <VBox.margin>
+                                          <Insets top="1.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                 </children>
                                  <HBox.margin>
-                                    <Insets left="5.0" right="5.0" />
+                                    <Insets left="5.0" top="-15.0" />
                                  </HBox.margin>
-                              </MenuButton>
+                              </VBox>
                               <Button fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
                                  <HBox.margin>
                                     <Insets left="10.0" right="5.0" />
@@ -198,9 +244,9 @@
                               <TableView fx:id="tvCerca">
                                 <columns>
                                   <TableColumn fx:id="tbNomeCerca" prefWidth="100.0" text="Nome" />
-                                  <TableColumn fx:id="tcPointCerca" prefWidth="69.0" text="Points" />
+                                  <TableColumn fx:id="tcPointCerca" prefWidth="69.0" text="Punti" />
                                     <TableColumn fx:id="tcAssistCerca" prefWidth="68.0" text="Assists" />
-                                    <TableColumn fx:id="tcReboundCerca" prefWidth="63.0" text="Rebounds" />
+                                    <TableColumn fx:id="tcReboundCerca" prefWidth="63.0" text="Rimbalzi" />
                                 </columns>
                                  <HBox.margin>
                                     <Insets right="10.0" />
