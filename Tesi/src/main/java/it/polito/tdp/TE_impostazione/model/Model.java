@@ -1,6 +1,8 @@
 package it.polito.tdp.TE_impostazione.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,20 +14,37 @@ public class Model {
 	
 	private SquadreDAO squadreDAO;
 	private List<Squadre> squadre;
+	
 	private GiocatoriDAO giocatoriDao;
 	private Set<Giocatore> daCedere;
+	private List<Giocatore> trovati;
+	private Integer limiteSalariale;
+	private List<Giocatore> lscorer;
+	private List<Giocatore> lassist;
+	private List<Giocatore> lrimbalzi;
+	private List<Giocatore> lplus;
+	private List<Giocatore> lda3;
+	private List<Giocatore> lda2;
 	
 	public Model() {
 		squadreDAO=new SquadreDAO();
 		squadre=new ArrayList<Squadre>();
 		giocatoriDao=new GiocatoriDAO();
 		daCedere=new HashSet<Giocatore>();
+		trovati=new ArrayList<Giocatore>();
+		limiteSalariale=109140000;
 	}
 	
 	public List<Squadre> getNomiSquadre(){
 		return squadreDAO.nomiSquadre();
 	}
 	
+	
+	public Integer getLimiteSalariale() {
+		return limiteSalariale;
+	}
+
+
 	public List<Giocatore> getRoster(Squadre s){
 		return squadreDAO.roster(s);
 	}
@@ -54,5 +73,97 @@ public class Model {
 	
 	public void rimuoviDaCedere(Giocatore g) {
 		daCedere.remove(g);
+	}
+	
+	public Integer getSalaryCap(Squadre s) {
+		return squadreDAO.getSalaryCap(s); 
+	}
+	
+	public List<Giocatore> listaScorer(Integer spazioSalariale, Squadre s){
+		Float media=giocatoriDao.getMediaPunti();
+		lscorer=giocatoriDao.getListaGiocatori(s);
+		
+		for(Giocatore g:lscorer) {
+			if(g.getEta()<25) {
+				g.setPesoScorer(g.getPesoScorer()+media/2);
+			}
+			if(g.getEta()>30) {
+				g.setPesoScorer(g.getPesoScorer()-media/2);
+			}
+			if(g.getSalary()<giocatoriDao.getMediaSalary()) {
+				g.setPesoScorer(g.getPesoScorer()+media/2);
+			}
+			if(g.getSalary()>20*Math.pow(10, 6)) {
+				g.setPesoScorer(g.getPesoScorer()-media/2);
+			}
+		}
+		
+		Collections.sort(lscorer,new Comparator<Giocatore>(){
+
+			@Override
+			public int compare(Giocatore o1, Giocatore o2) {
+				return -Float.compare(o1.getPesoScorer(), o2.getPesoScorer());
+			}	
+			
+		});
+		return lscorer;
+	}
+	public List<Giocatore> listaAssist(){
+		return null;
+	}
+	public List<Giocatore> listaRimbalzi(){
+		return null;
+	}
+	public List<Giocatore> listaPlusMinus(){
+		return null;
+	}
+	public List<Giocatore> listaTiratorida3(){
+		return null;
+	}
+	public List<Giocatore> listaTiratorida2(){
+		return null;
+	}
+	
+	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Squadre s){
+		if(trovati!=null)
+		trovati.clear();
+		Integer spazioSalariale=0;
+		for(Giocatore g:selezionati()) {
+			spazioSalariale=g.getSalary()*125/100;
+		}
+		if(getSalaryCap(s)+spazioSalariale<limiteSalariale)
+			spazioSalariale=limiteSalariale-getSalaryCap(s);
+		int nscorer=0,nassist=0,nrimb=0;
+		for(Archetipo a:scelti) {
+			//String ruoli[]=a.getRuolo().split("/");
+			if(a.getTipo().equals("Scorer"))
+				nscorer++;
+			if(a.getTipo().equals("Assistman"))
+				nassist++;
+			if(a.getTipo().equals("Rimbalzista"))
+				nrimb++;
+		}
+		
+		return trovati;
+	}
+	
+	private void faiRicorsione(Integer spazioSalariale, Squadre s ,List<Giocatore> parziale, List<String> ruoli, Integer numero ) {
+		if(parziale.size()==numero) {
+			trovati.addAll(parziale);
+			return;
+		}
+		
+		for(Giocatore g:listaScorer(spazioSalariale,s)) {
+			if(!parziale.contains(g)) {
+				if(parziale.size()<numero) {
+				if(ruoli.get(parziale.size()).contains(g.getPosizione()) || g.getPosizione().contains(ruoli.get(parziale.size()))) {
+					if(g.getSalary()<=spazioSalariale || g.getSalary()<=898310) { //MINIMO SALARIALE
+						parziale.add(g);
+						faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,numero);
+					}
+				}
+			}
+		}
+	  }
 	}
 }

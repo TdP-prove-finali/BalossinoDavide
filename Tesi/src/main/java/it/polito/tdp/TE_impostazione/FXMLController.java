@@ -143,7 +143,7 @@ public class FXMLController {
     private ChoiceBox<String> boxCaratteristiche;
     
     private  File fileEst = new File("im/easternlogo.png");
-    Image estlogo=new Image((fileEst.toURI().toString())); //mettere private
+    private Image estlogo=new Image((fileEst.toURI().toString())); //mettere private
 	File fileWest = new File("im/westernlogo.png");
 	Image westlogo= new Image((fileWest.toURI().toString()));
 	File fileHawks = new File("im/Hawks.png");
@@ -207,7 +207,7 @@ public class FXMLController {
 	File fileWizard = new File("im/Wizards.png");
 	Image wizard=new Image(fileWizard.toURI().toString());
 	
-	
+	private Squadre squadraScelta; //DA AZZERARE 
 	
 
     @FXML
@@ -302,8 +302,24 @@ public class FXMLController {
     }
     
     @FXML
-    void doCercaLista(ActionEvent event) {
+    void doCercaLista(ActionEvent event) throws IOException {
+    	if(model.selezionati().size()>0) {
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Cedi.fxml"));
+    	Parent root=loader.load();
+    	CediController controller= loader.getController();
     	
+    	Scene scene= new Scene(root);
+    	scene.getStylesheets().add("/styles/Styles.css");
+    	
+    	Model ml=new Model();
+    	controller.setModel(ml,squadraScelta);
+    	
+    	Stage s=new Stage();
+    	s.setTitle("Cedi Giocatori");
+    	s.setScene(scene);
+    	s.setX(+565.0);
+    	s.setY(+500.0);
+    	s.show(); }
     }
 
     @FXML
@@ -456,6 +472,8 @@ public class FXMLController {
     		tbAssistsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
     		tbReboundsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
     		
+    		squadraScelta=scelta;
+    	//	model.setSquadraScelta(squadraScelta);
     	}
     }
 
@@ -526,23 +544,7 @@ public class FXMLController {
     	s.setY(+500.0);
     	s.show();
     	}
-    }
-
-    
-    
- //   @FXML
-  //  void doPosizione(ActionEvent event) {
-    	
-  //  }
-    
-    
-  /* @FXML
-   	void doGuardia(ActionEvent event) {
-	//   mnPosizione.setOnShowing(mnPosizione);
-	    mnPosizione.show();
-   } */
-   	
-    
+    }    
     
     
     @FXML

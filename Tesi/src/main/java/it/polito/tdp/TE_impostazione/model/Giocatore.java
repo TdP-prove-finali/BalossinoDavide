@@ -1,44 +1,48 @@
 package it.polito.tdp.TE_impostazione.model;
 
 public class Giocatore {
-	String nome;
-	Squadre squadra;
-	Integer eta;
-	Integer salary;
-	String posizione;
-	Integer games_played;
-	Integer games_started;
-	Float minutes_pergame;
-	Float fg_made;
-	Float fg_attemp;
-	String fg_perc;
-	Float p3_made;
-	String p3_perce;
-	Float p3_attemp;
-	Float p2_made;
-	String p2_perce;
-	Float p2_attemp;	
+	private String nome;
+	private Squadre squadra;
+	private Integer eta;
+	private Integer salary;
+	private String posizione;
+	private Integer games_played;
+	private Integer games_started;
+	private Float minutes_pergame;
+	private Float fg_made;
+	private Float fg_attemp;
+	private String fg_perc;
+	private Float p3_made;
+	private String p3_perce;
+	private Float p3_attemp;
+	private Float p2_made;
+	private String p2_perce;
+	private Float p2_attemp;	
 //	Float ft_made;
 //	Float ft_perce;
 //	Float ft_attemp;
-	Float orimb;
-	Float drimb;
-	Float trimb;
-	Float assist;
-	Float steal;
-	Float turnovers;
+	private Float orimb;
+	private Float drimb;
+	private Float trimb;
+	private Float assist;
+	private Float steal;
+	private Float turnovers;
 	//Float fouls;
-	Float points;
-	Float plus;
-	Float vorp;
-	Float blocks;
-	String inj;
+	private Float points;
+	private Float plus;
+	private Float vorp;
+	private Float blocks;
+	private String inj;
+	
+	private Float pesoScorer;
+	private Float pesoAssist;
+	private Float pesoRimbalzi;
 	
 	public Giocatore(String nome, Squadre squadra, Integer eta, Integer salary, String posizione, Integer games_palyed,
 			Integer games_started, Float minutes_pergame, Float fg_made, Float fg_attemp, String fg_perc, Float p3_made,
 			String p3_perce, Float p3_attemp, Float p2_made, String p2_perce, Float p2_attemp, Float orimb, Float drimb,
 			Float trimb, Float assist, Float steal, Float turnovers, Float points, Float plus, Float vorp, Float blocks,
-			String inj) {
+			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi) {
 		super();
 		this.nome = nome;
 		this.squadra = squadra;
@@ -68,6 +72,12 @@ public class Giocatore {
 		this.vorp = vorp;
 		this.blocks = blocks;
 		this.inj = inj;
+		this.pesoScorer=pesoScorer;
+		this.pesoAssist=pesoAssist;
+		this.pesoRimbalzi=pesoRimbalzi;
+		setPesoScorer(points);
+		setPesoAssist(assist);
+		setPesoRimbalzi(trimb);
 	}
 	public String getNome() {
 		return nome;
@@ -153,6 +163,27 @@ public class Giocatore {
 	public String getInj() {
 		return inj;
 	}
+	
+	
+	public Float getPesoScorer() {
+		return pesoScorer;
+	}
+	public void setPesoScorer(Float pesoScorer) {
+		this.pesoScorer = pesoScorer;
+	}
+	public Float getPesoAssist() {
+		return pesoAssist;
+	}
+	public void setPesoAssist(Float pesoAssist) {
+		this.pesoAssist = pesoAssist;
+	}
+	public Float getPesoRimbalzi() {
+		return pesoRimbalzi;
+	}
+	public void setPesoRimbalzi(Float pesoRimbalzi) {
+		this.pesoRimbalzi = pesoRimbalzi;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
