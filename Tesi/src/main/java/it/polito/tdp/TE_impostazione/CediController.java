@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 
 public class CediController {
 
@@ -93,15 +94,20 @@ public class CediController {
     
     private ObservableList<Archetipo> tipi=FXCollections.observableArrayList(); //DA AZZERARE
     private Squadre scelta;
+    private Integer spazioSalariale;
 
     @FXML
     void doCerca(ActionEvent event) {
     	ObservableList<Giocatore> trovati=FXCollections.observableArrayList();
     	//trovati=(ObservableList<Giocatore>) model.trovaMiglioriGiocatori(tipi,scelta);
-    	trovati.addAll(model.trovaMiglioriGiocatori(tipi, scelta));
+    	if(tipi.size()>0) {
+    	long inizio=System.currentTimeMillis();
+    	trovati.addAll(model.trovaMiglioriGiocatori(tipi, scelta, spazioSalariale));
+    	long fine=System.currentTimeMillis();
+    	System.out.println(fine-inizio);
     	tvGiocatori.setItems(trovati);
     	tcNome.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
-    	System.out.println(trovati.size());
+    	System.out.println(trovati.size());}
     }
 
     @FXML
@@ -169,13 +175,6 @@ public class CediController {
 
     }
     
-    private Integer getSalaryDisponibile(Squadre s) {
-    	Integer salari=model.getSalaryCap(s);
-    	for(Giocatore g:model.selezionati()) {
-    		salari=salari-g.getSalary();
-    	}
-    	return salari;
-    }
     
     public void setModel(Model m, Squadre squadra) {
     	this.model=m;
@@ -197,15 +196,16 @@ public class CediController {
 		archetipi.add("Rimbalzista");
 		boxCaratteristiche.getItems().addAll(archetipi);
 		
-		if(getSalaryDisponibile(squadra)<=model.getLimiteSalariale()) {
-		double p=model.getSalaryCap(squadra);
+		if(model.getLivelloSalaryCap(squadra)<=model.getLimiteSalariale()) {
+		double p=model.getLivelloSalaryCap(squadra);
 		lbnSalary.setText(""+(p/1000000));
-		lbnSalary.styleProperty().set("-fx-color:green");} //LLLLLLLLLLLLLLLLLLLLLLLL
+		lbnSalary.setTextFill(Color.color(0, 1, 0));} 
 		
-		if(getSalaryDisponibile(squadra)>model.getLimiteSalariale()) {
-			lbnSalary.setText(""+model.getSalaryCap(squadra));
-			lbnSalary.styleProperty().set("-fx-color:red");}
+		if(model.getLivelloSalaryCap(squadra)>model.getLimiteSalariale()) {
+			lbnSalary.setText(""+model.getLivelloSalaryCap(squadra));
+			lbnSalary.setTextFill(Color.color(1, 0, 0));}
 		
+		spazioSalariale=model.getSpazioSalaryCap(squadra);
     }
 }
 

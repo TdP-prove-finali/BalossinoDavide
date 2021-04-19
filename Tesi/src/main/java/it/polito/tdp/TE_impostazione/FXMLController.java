@@ -312,6 +312,10 @@ public class FXMLController {
     	scene.getStylesheets().add("/styles/Styles.css");
     	
     	Model ml=new Model();
+    	for(Giocatore g:model.selezionati()) {
+    		ml.aggiungiDaCedere(g);
+    	}
+    	ml.setSquadraSelezionata(squadraScelta);
     	controller.setModel(ml,squadraScelta);
     	
     	Stage s=new Stage();

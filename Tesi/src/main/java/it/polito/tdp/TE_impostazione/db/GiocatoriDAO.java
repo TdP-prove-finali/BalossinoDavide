@@ -43,16 +43,17 @@ public class GiocatoriDAO {
 		return result;
 	}
 	
-	public List<Giocatore> getListaGiocatori(Squadre s){
+	public List<Giocatore> getListaGiocatori(Squadre s, Integer spazioSalariale){
 		String sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
 				+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
-				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Team<>? AND s.Games_Played>=15";
+				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Team<>? AND s.Games_Played>=15 AND n.Salary<=?";
 		List<Giocatore> result=new ArrayList<Giocatore>();
 		
 		try {
 			Connection conn=DBConnect.getConnection();
 			PreparedStatement st=conn.prepareStatement(sql);
 			st.setString(1, s.getNome());
+			st.setInt(2, spazioSalariale);
 			ResultSet rs= st.executeQuery();
 			
 			while(rs.next()) {

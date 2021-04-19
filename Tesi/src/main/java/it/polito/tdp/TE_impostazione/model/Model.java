@@ -25,6 +25,7 @@ public class Model {
 	private List<Giocatore> lplus;
 	private List<Giocatore> lda3;
 	private List<Giocatore> lda2;
+	private Squadre squadraSelezionata;
 	
 	public Model() {
 		squadreDAO=new SquadreDAO();
@@ -43,7 +44,14 @@ public class Model {
 	public Integer getLimiteSalariale() {
 		return limiteSalariale;
 	}
+	
+	public Squadre getSquadraSelezionata() {
+		return squadraSelezionata;
+	}
 
+	public void setSquadraSelezionata(Squadre squadraSelezionata) {
+		this.squadraSelezionata = squadraSelezionata;
+	}
 
 	public List<Giocatore> getRoster(Squadre s){
 		return squadreDAO.roster(s);
@@ -79,9 +87,9 @@ public class Model {
 		return squadreDAO.getSalaryCap(s); 
 	}
 	
-	public List<Giocatore> listaScorer(Integer spazioSalariale, Squadre s){
+	public List<Giocatore> listaScorer(Integer spazioSalariale){
 		Float media=giocatoriDao.getMediaPunti();
-		lscorer=giocatoriDao.getListaGiocatori(s);
+		lscorer=giocatoriDao.getListaGiocatori(squadraSelezionata,spazioSalariale);
 		
 		for(Giocatore g:lscorer) {
 			if(g.getEta()<25) {
@@ -106,6 +114,10 @@ public class Model {
 			}	
 			
 		});
+		if(squadraSelezionata!=null)
+		System.out.println(squadraSelezionata.getNome());
+		else
+			System.out.println("AAAAa");
 		return lscorer;
 	}
 	public List<Giocatore> listaAssist(){
@@ -124,16 +136,30 @@ public class Model {
 		return null;
 	}
 	
-	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Squadre s){
-		if(trovati!=null)
-		trovati.clear();
+	public Integer getLivelloSalaryCap(Squadre s) { //SPAZIO SALARIALE A LIVELLO LUXURY TAX, TOGLIENDO SOLO STIPENDI DEI GIOCATORI DA CEDERE
+		Integer result=getSalaryCap(s);
+		for(Giocatore g:selezionati()) {
+    		result=result-g.getSalary();
+    	}
+    	return result;
+	}
+	
+	public Integer getSpazioSalaryCap(Squadre s) { //SPAZIO SALARIALE CONSIDERANDO IL 125% DELLO STIPENDIO, A LIVELLO TRADE
 		Integer spazioSalariale=0;
 		for(Giocatore g:selezionati()) {
 			spazioSalariale=g.getSalary()*125/100;
 		}
-		if(getSalaryCap(s)+spazioSalariale<limiteSalariale)
-			spazioSalariale=limiteSalariale-getSalaryCap(s);
+		if(getLivelloSalaryCap(s)+spazioSalariale<limiteSalariale)
+			spazioSalariale=limiteSalariale-getLivelloSalaryCap(s);
+		return spazioSalariale;
+	}
+	
+	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Squadre s, Integer spazioSalariale){
+		if(trovati!=null)
+		trovati.clear();
+		
 		int nscorer=0,nassist=0,nrimb=0;
+		List<String> ruoli=new ArrayList<String>();
 		for(Archetipo a:scelti) {
 			//String ruoli[]=a.getRuolo().split("/");
 			if(a.getTipo().equals("Scorer"))
@@ -142,7 +168,12 @@ public class Model {
 				nassist++;
 			if(a.getTipo().equals("Rimbalzista"))
 				nrimb++;
+			ruoli.add(a.getRuolo());
 		}
+		List<Giocatore> parziale=new ArrayList<Giocatore>();
+		
+	
+		faiRicorsione(spazioSalariale,s,parziale,ruoli,scelti.size());
 		
 		return trovati;
 	}
@@ -153,7 +184,7 @@ public class Model {
 			return;
 		}
 		
-		for(Giocatore g:listaScorer(spazioSalariale,s)) {
+		for(Giocatore g:listaScorer(spazioSalariale)) {
 			if(!parziale.contains(g)) {
 				if(parziale.size()<numero) {
 				if(ruoli.get(parziale.size()).contains(g.getPosizione()) || g.getPosizione().contains(ruoli.get(parziale.size()))) {

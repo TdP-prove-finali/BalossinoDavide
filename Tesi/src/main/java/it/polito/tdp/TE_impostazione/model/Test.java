@@ -12,7 +12,7 @@ public class Test {
 		
 		Model m=new Model();
 		long inizio=System.currentTimeMillis();
-		System.out.println(m.listaScorer(1000000, s).get(0));
+	//	System.out.println(m.listaScorer(1000000, s).get(0));
 		long fine=System.currentTimeMillis();
 		System.out.println(fine-inizio);
 	}
