@@ -206,6 +206,7 @@ public class CediController {
 			lbnSalary.setTextFill(Color.color(1, 0, 0));}
 		
 		spazioSalariale=model.getSpazioSalaryCap(squadra);
+	//	model.listaScorer(spazioSalariale);
     }
 }
 
