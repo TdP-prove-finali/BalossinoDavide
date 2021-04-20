@@ -177,9 +177,21 @@ public class GiocatoriDAO {
 	}
 	
 	public List<Giocatore> getListaGiocatoriAccessibiliPunti(Integer spazioSalariale, Squadre s, String posizione){
-		String sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+		String campi[]=posizione.split("-");
+		String sql="";
+		if(campi.length==1)
+		sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
 				+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
 				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND (n.Salary<=? OR n.Salary<=898310) AND n.Team<>? AND s.Games_Played>=15 AND n.Pos LIKE ?";
+		if(campi.length==2)
+			sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+					+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+					+ "WHERE n.Player=t.Player AND n.Player=s.Player AND (n.Salary<=? OR n.Salary<=898310) AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ?)";
+		if(campi.length==3)
+			sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+					+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+					+ "WHERE n.Player=t.Player AND n.Player=s.Player AND (n.Salary<=? OR n.Salary<=898310) AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ? OR n.Pos LIKE ?)";
+		
 		List<Giocatore> result=new ArrayList<Giocatore>();
 		
 		
@@ -188,7 +200,17 @@ public class GiocatoriDAO {
 			PreparedStatement st=conn.prepareStatement(sql);
 			st.setInt(1, spazioSalariale);
 			st.setString(2, s.getNome());
-			st.setString(3, posizione);
+			if(campi.length==1) 
+				st.setString(3, posizione);
+				if(campi.length==2) {
+					st.setString(3, "%"+campi[0]+"%");
+					st.setString(4,"%"+campi[1]+"%" );
+				}
+				if(campi.length==3) {
+					st.setString(3, "%"+campi[0]+"%");
+					st.setString(4,"%"+campi[1]+"%" );
+					st.setString(5, "%"+campi[2]+"%");
+				}
 			ResultSet rs= st.executeQuery();
 			float mediaPunti=getMediaPunti();
 			Float mediaSalary=getMediaSalary();
@@ -223,9 +245,22 @@ public class GiocatoriDAO {
 	}
 	
 	public List<Giocatore> getListaGiocatoriAccessibiliAssist(Integer spazioSalariale, Squadre s, String posizione){
-		String sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+		String campi[]=posizione.split("-");
+		String sql="";
+		if(campi.length==1) {
+		sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
 				+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
-				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND n.Pos LIKE ?";
+				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND n.Pos LIKE ?"; }
+		if(campi.length==2) {
+			sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+					+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+					+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ?)";
+		}
+		if(campi.length==3) {
+			sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+					+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+					+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ? OR n.Pos LIKE ?)";
+		}
 		List<Giocatore> result=new ArrayList<Giocatore>();
 		
 		
@@ -234,7 +269,17 @@ public class GiocatoriDAO {
 			PreparedStatement st=conn.prepareStatement(sql);
 			st.setInt(1, spazioSalariale);
 			st.setString(2, s.getNome());
+			if(campi.length==1)
 			st.setString(3, posizione);
+			if(campi.length==2) {
+				st.setString(3, "%"+campi[0]+"%");
+				st.setString(4,"%"+campi[1]+"%" );
+			}
+			if(campi.length==3) {
+				st.setString(3, "%"+campi[0]+"%");
+				st.setString(4,"%"+campi[1]+"%" );
+				st.setString(5, "%"+campi[2]+"%");
+			}
 			ResultSet rs= st.executeQuery();
 			float mediaAssist=getMediaAssist();
 			Float mediaSalary=getMediaSalary();
@@ -266,12 +311,24 @@ public class GiocatoriDAO {
 		}
 		
 		return result;
+		
 	}
 	
 	public List<Giocatore> getListaGiocatoriAccessibiliRimbalzi(Integer spazioSalariale, Squadre s, String posizione){
-		String sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+		String campi[]=posizione.split("-");
+		String sql="";
+		if(campi.length==1)
+		  sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
 				+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
 				+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND n.Pos LIKE ?";
+		if(campi.length==2)
+			sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+						+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+						+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ?)";
+		if(campi.length==3)
+		 sql="SELECT DISTINCT n.Player, t.Age, n.Team,n.Salary,n.Pos,t.VORP,t.BPM,s.Games_Played,s.Games_Started,s.Minutes_Played,s.Field_Goals_Made,s.Field_Goals_Attempted,s.Field_Goal_Percentage,s.3Point_Made,s.3Point_Attempted,s.3Point_Percentage,s.2Point_Made,s.2Point_Attempted,s.2Point_Percentage,s.Offensive_Rebounds,s.Difensive_Rebounds,s.Total_Rebounds,s.Assist,s.Steals,s.Turnovers,s.Points,s.Blocks,s.INJ "
+						+ "FROM  nba_2k AS n, statpergame AS s, statistiche20 AS t "
+						+ "WHERE n.Player=t.Player AND n.Player=s.Player AND n.Salary<=? AND n.Team<>? AND s.Games_Played>=15 AND (n.Pos LIKE ? OR n.Pos LIKE ? OR n.Pos LIKE ?)";
 		List<Giocatore> result=new ArrayList<Giocatore>();
 		
 		
@@ -280,7 +337,17 @@ public class GiocatoriDAO {
 			PreparedStatement st=conn.prepareStatement(sql);
 			st.setInt(1, spazioSalariale);
 			st.setString(2, s.getNome());
-			st.setString(3, posizione);
+			if(campi.length==1)
+				st.setString(3, posizione);
+			if(campi.length==2) {
+				st.setString(3, "%"+campi[0]+"%");
+				st.setString(4,"%"+campi[1]+"%" );
+				}
+			if(campi.length==3) {
+				st.setString(3, "%"+campi[0]+"%");
+				st.setString(4,"%"+campi[1]+"%" );
+				st.setString(5, "%"+campi[2]+"%");
+				}
 			ResultSet rs= st.executeQuery();
 			float mediaRimbalzi=getMediaRimbalzi();
 			Float mediaSalary=getMediaSalary();
