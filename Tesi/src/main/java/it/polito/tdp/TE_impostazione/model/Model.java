@@ -176,16 +176,16 @@ public class Model {
 	
 	private int nscorer=0,nassist=0,nrimb=0;
 	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Squadre s, Integer spazioSalariale){
-		if(trovati!=null)
+		//if(trovati!=null)
 		trovati.clear();
+		ruoloFattoRimbalzi=null;
+		ruoloFattoAssist=null;
+		ruoloFattoScorer=null;
 		
 		
 		List<String> ruoli=new ArrayList<String>();
-	//	List<String> ruoliAssist=new ArrayList<String>();
-	//	List<String> ruoliRimbalzo= new ArrayList<String>();
 		List<String> ordine=new ArrayList<String>();
 		for(Archetipo a:scelti) {
-			//String ruoli[]=a.getRuolo().split("/");
 			if(a.getTipo().equals("Scorer")) {
 				nscorer++;
 				ruoli.add(a.getRuolo());

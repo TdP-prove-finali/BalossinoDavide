@@ -92,21 +92,25 @@ public class CediController {
     @FXML
     private TableColumn<Giocatore, Integer> tcIngaggio;
     
-    private ObservableList<Archetipo> tipi=FXCollections.observableArrayList(); //DA AZZERARE
+    private ObservableList<Archetipo> tipi=FXCollections.observableArrayList(); 
     private Squadre scelta;
     private Integer spazioSalariale;
 
     @FXML
     void doCerca(ActionEvent event) {
     	ObservableList<Giocatore> trovati=FXCollections.observableArrayList();
-    	//trovati=(ObservableList<Giocatore>) model.trovaMiglioriGiocatori(tipi,scelta);
+    	trovati.clear();
+    	
     	if(tipi.size()>0) {
+    		System.out.println(tipi.size());
     	long inizio=System.currentTimeMillis();
     	trovati.addAll(model.trovaMiglioriGiocatori(tipi, scelta, spazioSalariale));
     	long fine=System.currentTimeMillis();
     	System.out.println(fine-inizio);
     	tvGiocatori.setItems(trovati);
     	tcNome.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+    	tcSquadra.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
+    	tcIngaggio.setCellValueFactory(new PropertyValueFactory<Giocatore,Integer>("salary"));
     	System.out.println(trovati.size());}
     }
 
@@ -148,7 +152,12 @@ public class CediController {
 
     @FXML
     void doRimuovi(ActionEvent event) {
-
+    	Archetipo a=tvArchetipi.getSelectionModel().getSelectedItem();
+    	if(a!=null) {
+    		tipi.remove(a);
+    		tvArchetipi.getItems().remove(a);
+    		tvGiocatori.getItems().removeAll(tvGiocatori.getItems());
+    	}
     }
 
     @FXML

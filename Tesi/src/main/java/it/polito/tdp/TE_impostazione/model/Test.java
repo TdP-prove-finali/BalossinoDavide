@@ -9,17 +9,17 @@ public class Test {
 
 	public static void main(String[] args) {
 		SquadreDAO squadreDao=new SquadreDAO();
-		Squadre s=squadreDao.squadra("Charlotte Hornets");
+		Squadre s=squadreDao.squadra("Detroit Pistons");
 		//System.out.println(squadreDao.roster(s));
 
 		
 		Model m=new Model();
 		List<Archetipo> scelti=new ArrayList<Archetipo>();
-		scelti.add(new Archetipo("Scorer","G"));
-		scelti.add(new Archetipo("Assistman","F-C"));
+		scelti.add(new Archetipo("Assistman","G"));
+		scelti.add(new Archetipo("Assistman","C"));
 		m.setSquadraSelezionata(s);
 		long inizio=System.currentTimeMillis();
-		System.out.println(m.trovaMiglioriGiocatori(scelti,s,100000000));
+		System.out.println(m.trovaMiglioriGiocatori(scelti,s,6854709));
 		long fine=System.currentTimeMillis();
     	System.out.println(fine-inizio);
 		
