@@ -266,7 +266,7 @@ public class FXMLController {
     	Giocatore2.setText("");
     	Giocatore3.setText("");
     	
-    	Set<Giocatore> g=model.selezionati();
+    	List<Giocatore> g=model.selezionati();
     	if(g.size()==1) {
     		for(Giocatore gi: g) {
     		Giocatore1.setText(gi.getNome());

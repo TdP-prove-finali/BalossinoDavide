@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -38,16 +40,6 @@
                         <Insets left="3.0" top="2.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="lbnGiocatore2" text="Giannis Antetokoumpo, ">
-                     <HBox.margin>
-                        <Insets left="3.0" top="2.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="lbnGiocatore3" text="Anthony Davis">
-                     <HBox.margin>
-                        <Insets left="3.0" right="5.0" top="2.0" />
-                     </HBox.margin>
-                  </Label>
                </children>
             </HBox>
             <HBox>
@@ -55,17 +47,17 @@
                   <Insets left="5.0" top="5.0" />
                </VBox.margin>
                <children>
-                  <Label text="Salary Cap libero senza i 2 giocatori :">
+                  <Label text="Salary Cap senza il/i giocatori selezionati:">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
                   <Label id="spazio" fx:id="lbnSalary">
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" top="2.0" />
+                        <Insets left="10.0" top="2.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="/ 109.140 Milioni">
+                  <Label text="/109.140 Milioni">
                      <HBox.margin>
                         <Insets top="2.0" />
                      </HBox.margin>
@@ -74,9 +66,9 @@
             </HBox>
             <HBox>
                <children>
-                  <Button fx:id="btnConfermaTipo" mnemonicParsing="false" onAction="#doConfermaTipo" text="Conferma">
+                  <Button fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
                   <Label text="Cerca">
@@ -104,9 +96,9 @@
                         <Insets right="5.0" top="2.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <Button fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
+                  <Button fx:id="btnConfermaTipo" mnemonicParsing="false" onAction="#doConfermaTipo" text="Conferma">
                      <HBox.margin>
-                        <Insets left="10.0" right="5.0" />
+                        <Insets left="15.0" />
                      </HBox.margin>
                   </Button>
                   <Label fx:id="lbnAvvisi" text="Selezionare un archetipo">
@@ -121,22 +113,36 @@
             </HBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tvArchetipi" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tvArchetipi" prefHeight="250.0" prefWidth="280.0">
                     <columns>
-                      <TableColumn fx:id="tcArchetipo" prefWidth="107.0" text="Archetipo" />
-                      <TableColumn fx:id="tcCerca" prefWidth="92.0" text="Ruolo" />
+                      <TableColumn fx:id="tcArchetipo" prefWidth="139.0" text="Archetipo" />
+                      <TableColumn fx:id="tcCerca" prefWidth="140.0" text="Ruolo" />
                     </columns>
                   </TableView>
                   <VBox>
                      <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets left="15.0" right="15.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca" />
-                        <Button fx:id="btnRimuovi" mnemonicParsing="false" onAction="#doRimuovi" text="Rimuovi" />
+                        <Button fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca">
+                           <VBox.margin>
+                              <Insets left="65.0" />
+                           </VBox.margin></Button>
+                        <ImageView fx:id="spazioImm" fitHeight="144.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Desktop/TESI/generalManager3.jpg" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Button fx:id="btnRimuovi" mnemonicParsing="false" onAction="#doRimuovi" text="Rimuovi">
+                           <VBox.margin>
+                              <Insets left="60.0" top="15.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
-                  <TableView fx:id="tvGiocatori" prefHeight="200.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tvGiocatori" prefHeight="250.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="tcNome" prefWidth="93.0" text="Nome" />
                       <TableColumn fx:id="tcSquadra" prefWidth="93.0" text="Squadra" />
@@ -145,7 +151,7 @@
                   </TableView>
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                  <Insets bottom="15.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </HBox>
          </children>

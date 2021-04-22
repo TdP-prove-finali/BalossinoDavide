@@ -70,66 +70,66 @@ public class StatController {
     	sb.append(String.format("%-30s ", "Partite giocate da titolare:"));
     	sb.append(String.format("%-30d\n", g.getGames_started()));
     	sb.append(String.format("%-30s ", "Punti:"));
-    	sb.append(String.format("%-30f\n", g.getPoints()));
+    	sb.append(String.format("%-30.2f\n", g.getPoints()));
     	sb.append(String.format("%-30s ", "Assist:"));
-    	sb.append(String.format("%-30f\n", g.getAssist()));
+    	sb.append(String.format("%-30.2f\n", g.getAssist()));
     	sb.append(String.format("%-30s ", "Rimbalzi offensivi:"));
-    	sb.append(String.format("%-30f\n", g.getOrimb()));
+    	sb.append(String.format("%-30.2f\n", g.getOrimb()));
     	sb.append(String.format("%-30s ", "Rimbalzi difensivi:"));
-    	sb.append(String.format("%-30f\n", g.getDrimb()));
+    	sb.append(String.format("%-30.2f\n", g.getDrimb()));
     	sb.append(String.format("%-30s ", "Rimbalzi totali:"));
-    	sb.append(String.format("%-30f\n", g.getTrimb()));
+    	sb.append(String.format("%-30.2f\n", g.getTrimb()));
     	sb.append(String.format("%-30s ", "Minuti a partita:"));
-    	sb.append(String.format("%-30f\n", g.getMinutes_pergame()));
+    	sb.append(String.format("%-30.2f\n", g.getMinutes_pergame()));
     	sb.append(String.format("%-30s ", "Field Goals made:"));
-    	sb.append(String.format("%-30f\n", g.getFg_made()));
+    	sb.append(String.format("%-30.2f\n", g.getFg_made()));
     	sb.append(String.format("%-30s ", "Field Goals attempted:"));
-    	sb.append(String.format("%-30f\n", g.getFg_attemp()));
+    	sb.append(String.format("%-30.2f\n", g.getFg_attemp()));
     	sb.append(String.format("%-30s ", "Field Goals percentage:"));
     	String fgp=g.getFg_perc();
     	try {
     		Float pfg=Float.parseFloat(fgp);
-    		sb.append(String.format("%-30f\n", pfg));
+    		sb.append(String.format("%-30.2f\n", pfg));
         } catch(NumberFormatException e) {
         	sb.append(String.format("%-30s\n", " _ "));
         }
     	
     	sb.append(String.format("%-30s ", "3-Point made:"));
-    	sb.append(String.format("%-30f\n", g.getP3_made()));
+    	sb.append(String.format("%-30.2f\n", g.getP3_made()));
     	sb.append(String.format("%-30s ", "3-Point attempted:"));
-    	sb.append(String.format("%-30f\n", g.getP3_attemp()));
+    	sb.append(String.format("%-30.2f\n", g.getP3_attemp()));
     	sb.append(String.format("%-30s ", "3-Point percentage:"));
     	String gp3=g.getP3_perce();
     	try {
     		Float p3=Float.parseFloat(gp3);
-    		sb.append(String.format("%-30f\n", p3));
+    		sb.append(String.format("%-30.2f\n", p3));
         } catch(NumberFormatException e) {
         	sb.append(String.format("%-30s\n", " _ "));
         }
     	
     	sb.append(String.format("%-30s ", "2-Point made:"));
-    	sb.append(String.format("%-30f\n", g.getP2_made()));
+    	sb.append(String.format("%-30.2f\n", g.getP2_made()));
     	sb.append(String.format("%-30s ", "2-Point attempted:"));
-    	sb.append(String.format("%-30f\n", g.getP2_attemp()));
+    	sb.append(String.format("%-30.2f\n", g.getP2_attemp()));
     	sb.append(String.format("%-30s ", "2-Point percentage:"));
     	String gp2=g.getP2_perce();
     	try {
     		Float p2=Float.parseFloat(gp2);
-    		sb.append(String.format("%-30f\n", p2));
+    		sb.append(String.format("%-30.2f\n", p2));
         } catch(NumberFormatException e) {
         	sb.append(String.format("%-30s\n", " _ "));
         }
     	    	
     	sb.append(String.format("%-30s ", "Palle rubate:"));
-    	sb.append(String.format("%-30f\n", g.getSteal()));
+    	sb.append(String.format("%-30.2f\n", g.getSteal()));
     	sb.append(String.format("%-30s ", "Palle perse:"));
-    	sb.append(String.format("%-30f\n", g.getTurnovers()));
+    	sb.append(String.format("%-30.2f\n", g.getTurnovers()));
     	sb.append(String.format("%-30s ", "Plus-Minus*:"));
-    	sb.append(String.format("%-30f\n", g.getPlus()));
+    	sb.append(String.format("%-30.2f\n", g.getPlus()));
     	sb.append(String.format("%-30s ", "VORP**:"));
-    	sb.append(String.format("%-30f\n", g.getVorp()));
+    	sb.append(String.format("%-30.2f\n", g.getVorp()));
     	sb.append(String.format("%-30s ", "Stoppate:"));
-    	sb.append(String.format("%-30f\n", g.getBlocks()));
+    	sb.append(String.format("%-30.2f\n", g.getBlocks()));
     	sb.append(String.format("%-30s ", "Infortunato***:"));
     	sb.append(String.format("%-30s\n", g.getInj()));
     	

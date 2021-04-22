@@ -1,5 +1,6 @@
 package it.polito.tdp.TE_impostazione;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.image.ImageView;
 
 public class CediController {
 
@@ -34,6 +37,9 @@ public class CediController {
 
     @FXML
     private Label lbnGiocatore1;
+    
+    @FXML
+    private ImageView spazioImm;
 
     @FXML
     private Label lbnGiocatore2;
@@ -134,7 +140,7 @@ public class CediController {
     		if(!bxGuardia.isSelected() && !bxForward.isSelected() && bxCentro.isSelected())
     			ruolo=ruolo+"C";
     		String tipo=boxCaratteristiche.getValue();
-    		if(tipo==null) {
+    		if(tipo==null) { //////////AAAAAAAAAAAAAAAAAAAAAAAAAA
     			tipo="Qualunque";
     		}
     		
@@ -163,8 +169,6 @@ public class CediController {
     @FXML
     void initialize() {
         assert lbnGiocatore1 != null : "fx:id=\"lbnGiocatore1\" was not injected: check your FXML file 'Cedi.fxml'.";
-        assert lbnGiocatore2 != null : "fx:id=\"lbnGiocatore2\" was not injected: check your FXML file 'Cedi.fxml'.";
-        assert lbnGiocatore3 != null : "fx:id=\"lbnGiocatore3\" was not injected: check your FXML file 'Cedi.fxml'.";
         assert lbnSalary != null : "fx:id=\"lbnSalary\" was not injected: check your FXML file 'Cedi.fxml'.";
         assert btnConfermaTipo != null : "fx:id=\"btnConfermaTipo\" was not injected: check your FXML file 'Cedi.fxml'.";
         assert boxCaratteristiche != null : "fx:id=\"boxCaratteristiche\" was not injected: check your FXML file 'Cedi.fxml'.";
@@ -188,12 +192,15 @@ public class CediController {
     public void setModel(Model m, Squadre squadra) {
     	this.model=m;
     	String testo="";
-    	for(Giocatore g: model.selezionati()) {
-    		testo=testo+""+g.getNome()+", ";
+    	if(model.selezionati().size()==1)
+    		testo=model.selezionati().get(0).getNome();
+    	else {
+    	for(int i=0;i<model.selezionati().size()-1;i++) {
+    		testo=testo+""+model.selezionati().get(i).getNome()+", ";
+    	}
+    	testo=testo+""+model.selezionati().get(model.selezionati().size()-1).getNome();
     	}
     	lbnGiocatore1.setText(testo);
-    	lbnGiocatore2.setText("");
-    	lbnGiocatore3.setText("");
     	
     	List<String> archetipi=new ArrayList<String>();
 		archetipi.add("Scorer");
@@ -207,15 +214,20 @@ public class CediController {
 		
 		if(model.getLivelloSalaryCap(squadra)<=model.getLimiteSalariale()) {
 		double p=model.getLivelloSalaryCap(squadra);
-		lbnSalary.setText(""+(p/1000000));
+		lbnSalary.setText(""+String.format("%.3f",(p/1000000)));
 		lbnSalary.setTextFill(Color.color(0, 1, 0));} 
 		
 		if(model.getLivelloSalaryCap(squadra)>model.getLimiteSalariale()) {
 			lbnSalary.setText(""+model.getLivelloSalaryCap(squadra));
+			double p=model.getLivelloSalaryCap(squadra);
+			lbnSalary.setText(""+String.format("%.3f",(p/1000000)));
 			lbnSalary.setTextFill(Color.color(1, 0, 0));}
 		
 		spazioSalariale=model.getSpazioSalaryCap(squadra);
 	//	model.listaScorer(spazioSalariale);
+		File fileImm=new File("im/generalManager3.jpg");
+		Image imm=new Image(fileImm.toURI().toString());
+		spazioImm.setImage(imm);
     }
 }
 

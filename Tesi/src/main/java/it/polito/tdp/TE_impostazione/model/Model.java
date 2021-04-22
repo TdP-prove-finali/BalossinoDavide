@@ -16,7 +16,7 @@ public class Model {
 	private List<Squadre> squadre;
 	
 	private GiocatoriDAO giocatoriDao;
-	private Set<Giocatore> daCedere;
+	private List<Giocatore> daCedere;
 	private List<Giocatore> trovati;
 	private Integer limiteSalariale;
 	private List<Giocatore> lscorer;
@@ -31,7 +31,7 @@ public class Model {
 		squadreDAO=new SquadreDAO();
 		squadre=new ArrayList<Squadre>();
 		giocatoriDao=new GiocatoriDAO();
-		daCedere=new HashSet<Giocatore>();
+		daCedere=new ArrayList<Giocatore>();
 		trovati=new ArrayList<Giocatore>();
 		limiteSalariale=109140000;
 	}
@@ -61,7 +61,7 @@ public class Model {
 		return giocatoriDao.getGiocatore(giocatore);
 	}
 	
-	public Set<Giocatore> selezionati(){
+	public List<Giocatore> selezionati(){
 		return daCedere;
 	}
 	

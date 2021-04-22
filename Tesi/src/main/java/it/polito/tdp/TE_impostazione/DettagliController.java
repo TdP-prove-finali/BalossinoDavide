@@ -47,7 +47,7 @@ public class DettagliController {
     	File f=new File("im/perDettagli.jpg");
     	Image logo=new Image(f.toURI().toString());
     	immagine.setImage(logo);
-    	corpo.styleProperty().set("-fx-background-color:#d3d3d3");
+    	tutto.styleProperty().set("-fx-background-color:#d3d3d3");
     	setTesto();
     }
     
