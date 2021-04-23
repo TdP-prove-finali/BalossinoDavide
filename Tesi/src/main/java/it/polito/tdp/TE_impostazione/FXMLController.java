@@ -91,12 +91,6 @@ public class FXMLController {
     private Label Giocatore1;
 
     @FXML
-    private Label Giocatore2;
-
-    @FXML
-    private Label Giocatore3;
-
-    @FXML
     private Button btnCercaLista;
 
     @FXML
@@ -144,68 +138,68 @@ public class FXMLController {
     
     private  File fileEst = new File("im/easternlogo.png");
     private Image estlogo=new Image((fileEst.toURI().toString())); //mettere private
-	File fileWest = new File("im/westernlogo.png");
-	Image westlogo= new Image((fileWest.toURI().toString()));
-	File fileHawks = new File("im/Hawks.png");
-	Image hawks=new Image(fileHawks.toURI().toString());
-	File fileNets = new File("im/Nets.png");
-	Image nets=new Image(fileNets.toURI().toString()); 
-	File fileCeltics = new File("im/Celtics.png");
-	Image celtics=new Image(fileCeltics.toURI().toString());
-	File fileHornets = new File("im/Hornets.png");
-	Image hornets=new Image(fileHornets.toURI().toString());
-	File fileBulls = new File("im/Bulls.png");
-	Image bulls=new Image(fileBulls.toURI().toString());
-	File fileCavs = new File("im/Cavs.png");
-	Image cavs=new Image(fileCavs.toURI().toString());
-	File fileMavs = new File("im/Mavs.png");
-	Image mavs=new Image(fileMavs.toURI().toString());
-	File fileNuggets = new File("im/Denver.png");
-	Image nuggets=new Image(fileNuggets.toURI().toString());
-	File filePistons = new File("im/Pistons.png");
-	Image pistons=new Image(filePistons.toURI().toString());
-	File fileWarriors = new File("im/Warriors.png");
-	Image warriors=new Image(fileWarriors.toURI().toString());
-	File fileRockets = new File("im/Rockets.png");
-	Image rockets=new Image(fileRockets.toURI().toString());
-	File fileClippers = new File("im/Clippers.png");
-	Image clippers=new Image(fileClippers.toURI().toString());
-	File filePacers = new File("im/Pacers.png");
-	Image pacers=new Image(filePacers.toURI().toString());
-	File fileLakers = new File("im/lakers.png");
-	Image lakers=new Image(fileLakers.toURI().toString());
-	File fileMemphis = new File("im/Memphis.png");
-	Image memphis=new Image(fileMemphis.toURI().toString());
-	File fileHeat = new File("im/heat.png");
-	Image heat=new Image(fileHeat.toURI().toString());
-	File fileBucks = new File("im/Bucks.png");
-	Image bucks=new Image(fileBucks.toURI().toString());
-	File fileTwolves = new File("im/Twolves.png");
-	Image twolves=new Image(fileTwolves.toURI().toString());
-	File filePelicans = new File("im/Pelicans.png");
-	Image pelicans=new Image(filePelicans.toURI().toString());
-	File fileKnicks = new File("im/Knicks.png");
-	Image knicks=new Image(fileKnicks.toURI().toString());
-	File fileOkc = new File("im/OKC.png");
-	Image okc=new Image(fileOkc.toURI().toString());
-	File fileMagic = new File("im/Magics.png");
-	Image magic=new Image(fileMagic.toURI().toString());
-	File filePhila = new File("im/Phila.png");
-	Image phila=new Image(filePhila.toURI().toString());
-	File fileSuns = new File("im/Suns.png");
-	Image suns=new Image(fileSuns.toURI().toString());
-	File fileBlazers = new File("im/Blazers.png");
-	Image blazers=new Image(fileBlazers.toURI().toString());
-	File fileKings = new File("im/Kings.png");
-	Image kings=new Image(fileKings.toURI().toString());
-	File fileSpurs = new File("im/Spurs.png");
-	Image spurs=new Image(fileSpurs.toURI().toString());
-	File fileRaptors = new File("im/Raptors.png");
-	Image raptors=new Image(fileRaptors.toURI().toString());
-	File fileJazz = new File("im/UtahJazz.png");
-	Image jazz=new Image(fileJazz.toURI().toString());
-	File fileWizard = new File("im/Wizards.png");
-	Image wizard=new Image(fileWizard.toURI().toString());
+    private File fileWest = new File("im/westernlogo.png");
+    private Image westlogo= new Image((fileWest.toURI().toString()));
+    private File fileHawks = new File("im/Hawks.png");
+    private Image hawks=new Image(fileHawks.toURI().toString());
+    private File fileNets = new File("im/Nets.png");
+    private Image nets=new Image(fileNets.toURI().toString()); 
+    private File fileCeltics = new File("im/Celtics.png");
+    private Image celtics=new Image(fileCeltics.toURI().toString());
+    private File fileHornets = new File("im/Hornets.png");
+    private Image hornets=new Image(fileHornets.toURI().toString());
+    private File fileBulls = new File("im/Bulls.png");
+    private Image bulls=new Image(fileBulls.toURI().toString());
+    private File fileCavs = new File("im/Cavs.png");
+    private Image cavs=new Image(fileCavs.toURI().toString());
+    private File fileMavs = new File("im/Mavs.png");
+    private Image mavs=new Image(fileMavs.toURI().toString());
+    private File fileNuggets = new File("im/Denver.png");
+    private Image nuggets=new Image(fileNuggets.toURI().toString());
+    private File filePistons = new File("im/Pistons.png");
+    private Image pistons=new Image(filePistons.toURI().toString());
+    private File fileWarriors = new File("im/Warriors.png");
+    private Image warriors=new Image(fileWarriors.toURI().toString());
+    private File fileRockets = new File("im/Rockets.png");
+    private Image rockets=new Image(fileRockets.toURI().toString());
+    private File fileClippers = new File("im/Clippers.png");
+    private Image clippers=new Image(fileClippers.toURI().toString());
+    private File filePacers = new File("im/Pacers.png");
+    private Image pacers=new Image(filePacers.toURI().toString());
+    private File fileLakers = new File("im/lakers.png");
+    private Image lakers=new Image(fileLakers.toURI().toString());
+    private File fileMemphis = new File("im/Memphis.png");
+    private Image memphis=new Image(fileMemphis.toURI().toString());
+    private File fileHeat = new File("im/heat.png");
+    private Image heat=new Image(fileHeat.toURI().toString());
+    private File fileBucks = new File("im/Bucks.png");
+    private Image bucks=new Image(fileBucks.toURI().toString());
+    private File fileTwolves = new File("im/Twolves.png");
+    private Image twolves=new Image(fileTwolves.toURI().toString());
+    private File filePelicans = new File("im/Pelicans.png");
+    private Image pelicans=new Image(filePelicans.toURI().toString());
+    private File fileKnicks = new File("im/Knicks.png");
+    private Image knicks=new Image(fileKnicks.toURI().toString());
+    private File fileOkc = new File("im/OKC.png");
+    private Image okc=new Image(fileOkc.toURI().toString());
+    private File fileMagic = new File("im/Magics.png");
+    private Image magic=new Image(fileMagic.toURI().toString());
+    private File filePhila = new File("im/Phila.png");
+    private Image phila=new Image(filePhila.toURI().toString());
+    private File fileSuns = new File("im/Suns.png");
+    private Image suns=new Image(fileSuns.toURI().toString());
+    private File fileBlazers = new File("im/Blazers.png");
+    private Image blazers=new Image(fileBlazers.toURI().toString());
+    private File fileKings = new File("im/Kings.png");
+    private Image kings=new Image(fileKings.toURI().toString());
+	private File fileSpurs = new File("im/Spurs.png");
+	private Image spurs=new Image(fileSpurs.toURI().toString());
+	private File fileRaptors = new File("im/Raptors.png");
+	private Image raptors=new Image(fileRaptors.toURI().toString());
+	private File fileJazz = new File("im/UtahJazz.png");
+	private Image jazz=new Image(fileJazz.toURI().toString());
+	private File fileWizard = new File("im/Wizards.png");
+	private Image wizard=new Image(fileWizard.toURI().toString());
 	
 	private Squadre squadraScelta; //DA AZZERARE 
 	
@@ -263,42 +257,16 @@ public class FXMLController {
     
     private void setLabelDaCedere() {
     	Giocatore1.setText("");
-    	Giocatore2.setText("");
-    	Giocatore3.setText("");
     	
     	List<Giocatore> g=model.selezionati();
-    	if(g.size()==1) {
-    		for(Giocatore gi: g) {
-    		Giocatore1.setText(gi.getNome());
-    		}
-    		return;
+    	String s="";
+    	if(g.size()>0) {
+    	for(int i=0;i<g.size()-1;i++)
+    		s=s+""+g.get(i).getNome()+"\n";
+    	s=s+""+g.get(g.size()-1).getNome();
+    	Giocatore1.setText(s);
     	}
-    	if(g.size()==2) {
-    		for(Giocatore gi: g) {
-    		if(Giocatore1.getText().equals(""))
-    		Giocatore1.setText(gi.getNome());
-    		if(Giocatore2.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false)
-        		Giocatore2.setText(gi.getNome());
-    		}
-    		return;
-    	}
-    	if(g.size()==3) {
-    		for(Giocatore gi: g) {
-    		if(Giocatore1.getText().equals(""))
-    		Giocatore1.setText(gi.getNome());
-    		if(Giocatore2.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false)
-        		Giocatore2.setText(gi.getNome());
-    		if(Giocatore3.getText().equals("") && gi.getNome().equals(Giocatore1.getText())==false && gi.getNome().equals(Giocatore2.getText())==false)
-        		Giocatore3.setText(gi.getNome());
-    		}
-    		return;
-    	}
-    	if(g.size()==0) {
-    		Giocatore2.setText("");
-    		Giocatore3.setText("");
-    		Giocatore1.setText("");
-    		return;
-    	}
+    	
     }
     
     @FXML
@@ -477,7 +445,12 @@ public class FXMLController {
     		tbReboundsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
     		
     		squadraScelta=scelta;
+    		hbox2.setDisable(false);
     	//	model.setSquadraScelta(squadraScelta);
+    		txtGiocatore.clear();
+    		tvCerca.setItems(null);
+    		lbnRicercaGiocatore.setText("");
+    		model.riazzeraModel();
     	}
     }
 
@@ -489,12 +462,14 @@ public class FXMLController {
     	
     	if(g_cerca.length()==0 || (bxGuardia.isSelected()==false && bxForward.isSelected()==false && bxCentro.isSelected()==false)){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
     		lbnRicercaGiocatore.setText("Scegliere giocatore");
+    		return;
     	}
     	else {
     		
     		ObservableList<Giocatore> giocatore=FXCollections.observableArrayList(model.getGiocatore(g_cerca));
     		if(giocatore.size()==0) {
     			lbnRicercaGiocatore.setText("Non esistente");
+    			return;
     		}
     		tvCerca.setItems(giocatore);
     		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
@@ -615,7 +590,7 @@ public class FXMLController {
 		archetipi.add("Tiratore da 2");
 		archetipi.add("Rimbalzista");
 		boxCaratteristiche.getItems().addAll(archetipi);
-		
+		hbox2.setDisable(true);
 		
 		
 	}

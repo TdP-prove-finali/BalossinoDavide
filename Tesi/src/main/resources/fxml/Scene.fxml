@@ -117,25 +117,9 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="Giocatore2">
-                           <VBox.margin>
-                              <Insets left="2.0" top="2.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="Giocatore3">
-                           <VBox.margin>
-                              <Insets left="2.0" top="2.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Label>
                         <Button fx:id="btnCercaLista" mnemonicParsing="false" onAction="#doCercaLista" text="Cerca">
                            <VBox.margin>
-                              <Insets left="5.0" top="30.0" />
+                              <Insets left="5.0" top="68.0" />
                            </VBox.margin>
                         </Button>
                         <Button fx:id="btnStatisticheSx" mnemonicParsing="false" onAction="#doStatisticheSx" text="Statistiche">

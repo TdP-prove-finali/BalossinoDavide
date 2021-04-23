@@ -161,7 +161,8 @@ public class CediController {
     	Archetipo a=tvArchetipi.getSelectionModel().getSelectedItem();
     	if(a!=null) {
     		tipi.remove(a);
-    		tvArchetipi.getItems().remove(a);
+    	//	tvArchetipi.getItems().remove(a);
+    		System.out.println(tipi.size());
     		tvGiocatori.getItems().removeAll(tvGiocatori.getItems());
     	}
     }

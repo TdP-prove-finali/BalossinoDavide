@@ -36,6 +36,8 @@ public class DettagliController {
 
     @FXML
     void initialize() {
+    	assert tutto != null : "fx:id=\"tutto\" was not injected: check your FXML file 'dettagli.fxml'.";
+        assert corpo != null : "fx:id=\"corpo\" was not injected: check your FXML file 'dettagli.fxml'.";
         assert immagine != null : "fx:id=\"immagine\" was not injected: check your FXML file 'dettagli.fxml'.";
         assert txtTesto != null : "fx:id=\"txtTesto\" was not injected: check your FXML file 'dettagli.fxml'.";
 
@@ -76,5 +78,6 @@ public class DettagliController {
     	sb.append(String.format("%-120s\n", "Indica il ruolo di Centro"));
     	
     	txtTesto.appendText(sb.toString());
+    	txtTesto.home();
     }
 }

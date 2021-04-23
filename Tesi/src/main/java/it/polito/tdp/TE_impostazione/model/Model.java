@@ -292,7 +292,15 @@ public class Model {
 		}
 	  } */
 	}
+	
+	public void riazzeraModel() {
+		daCedere.clear();
+		squadraSelezionata=null;
+	}
+	
 }
+
+
 
 
 /*
