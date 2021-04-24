@@ -48,6 +48,10 @@ public class Model {
 	public Squadre getSquadraSelezionata() {
 		return squadraSelezionata;
 	}
+	
+	public List<Squadre> getTutteSquadre(){
+		return squadreDAO.tutteSquadre();
+	}
 
 	public void setSquadraSelezionata(Squadre squadraSelezionata) {
 		this.squadraSelezionata = squadraSelezionata;
@@ -57,8 +61,8 @@ public class Model {
 		return squadreDAO.roster(s);
 	}
 	
-	public List<Giocatore> getGiocatore(String giocatore){
-		return giocatoriDao.getGiocatore(giocatore);
+	public List<Giocatore> getGiocatore(String giocatore, Integer salaryMax, String ruolo){
+		return giocatoriDao.getGiocatore(giocatore,salaryMax,ruolo);
 	}
 	
 	public List<Giocatore> selezionati(){
@@ -175,7 +179,7 @@ public class Model {
 	}
 	
 	private int nscorer=0,nassist=0,nrimb=0;
-	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Squadre s, Integer spazioSalariale){
+	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Integer spazioSalariale){
 		//if(trovati!=null)
 		trovati.clear();
 		ruoloFattoRimbalzi=null;
@@ -207,7 +211,7 @@ public class Model {
 		}
 		List<Giocatore> parziale=new ArrayList<Giocatore>();
 		
-		faiRicorsione(spazioSalariale,s,parziale,ruoli,ordine,0,ruoli.size());
+		faiRicorsione(spazioSalariale,parziale,ruoli,ordine,0,ruoli.size());
 		
 		/*for(String st:ordine) {
 			if(st.equals("Scorer")) {
@@ -222,7 +226,7 @@ public class Model {
 		return trovati;
 	}
 	
-	private void faiRicorsione(Integer spazioSalariale, Squadre s ,List<Giocatore> parziale, List<String> ruoli,List<String> ordine,Integer livello,Integer numero ) {
+	private void faiRicorsione(Integer spazioSalariale ,List<Giocatore> parziale, List<String> ruoli,List<String> ordine,Integer livello,Integer numero ) {
 		if(parziale.size()==numero) {
 			trovati.addAll(parziale);
 			return;
@@ -234,7 +238,7 @@ public class Model {
 					if(!parziale.contains(g)) {
 						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione())) ) {
 							parziale.add(g);
-							faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,ordine,livello+1,numero);
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);
 							if(parziale.size()==numero) {
 								break;
 							}
@@ -252,7 +256,7 @@ public class Model {
 					if(!parziale.contains(g)) {
 						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione()))) {
 							parziale.add(g);
-							faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,ordine,livello+1,numero);
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);
 							if(parziale.size()==numero) {
 								break;
 							}
@@ -269,7 +273,7 @@ public class Model {
 					if(!parziale.contains(g)) {
 						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione()))) {
 							parziale.add(g);
-							faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,ordine,livello+1,numero);	
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);	
 							if(parziale.size()==numero) {
 								break;
 							}
@@ -293,9 +297,32 @@ public class Model {
 	  } */
 	}
 	
+	public List<Giocatore> getListaOrdinataScorer(String ruolo,Squadre s,Integer salaryMax){
+		return giocatoriDao.getScorers(ruolo, s,salaryMax);
+	}
+	
+	public List<Giocatore> getListaOrdinataAssist(String ruolo,Squadre s, Integer salaryMax){
+		return giocatoriDao.getAsssist(ruolo, s,salaryMax);
+	}
+	
+	public List<Giocatore> getListaOrdinataRimbalzi(String ruolo,Squadre s,Integer salaryMax){
+		return giocatoriDao.getRimbalzisti(ruolo, s, salaryMax);
+	}
+	
+	
+	
 	public void riazzeraModel() {
 		daCedere.clear();
 		squadraSelezionata=null;
+		if(lassist!=null)
+		lassist.clear();
+		if(lscorer!=null)
+		lscorer.clear();
+		if(lrimbalzi!=null)
+		lrimbalzi.clear();
+		ruoloFattoScorer=null;
+		ruoloFattoAssist=null;
+		ruoloFattoRimbalzi=null;
 	}
 	
 }

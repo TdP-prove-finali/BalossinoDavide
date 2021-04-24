@@ -19,7 +19,7 @@ public class Test {
 		scelti.add(new Archetipo("Assistman","C"));
 		m.setSquadraSelezionata(s);
 		long inizio=System.currentTimeMillis();
-		System.out.println(m.trovaMiglioriGiocatori(scelti,s,6854709));
+		System.out.println(m.trovaMiglioriGiocatori(scelti,6854709));
 		long fine=System.currentTimeMillis();
     	System.out.println(fine-inizio);
 		

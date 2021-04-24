@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import it.polito.tdp.TE_impostazione.model.Giocatore;
 import it.polito.tdp.TE_impostazione.model.Model;
@@ -105,6 +103,9 @@ public class FXMLController {
 
     @FXML
     private Button btnAcquista;
+    
+    @FXML
+    private TextField txtMaxSalary;
     
     @FXML
     private TableView<Giocatore> tvCerca;
@@ -450,7 +451,13 @@ public class FXMLController {
     		txtGiocatore.clear();
     		tvCerca.setItems(null);
     		lbnRicercaGiocatore.setText("");
+    		txtMaxSalary.clear();
+    		bxGuardia.setSelected(true);
+    		bxForward.setSelected(true);
+    		bxCentro.setSelected(true);
+    		boxCaratteristiche.setValue(null);
     		model.riazzeraModel();
+    		Giocatore1.setText("");
     	}
     }
 
@@ -459,14 +466,43 @@ public class FXMLController {
     	tvCerca.setItems(null);
     	lbnRicercaGiocatore.setText("");
     	String g_cerca=txtGiocatore.getText();
+    	String s_max=txtMaxSalary.getText();
+    	Integer salaryMax=0;
     	
-    	if(g_cerca.length()==0 || (bxGuardia.isSelected()==false && bxForward.isSelected()==false && bxCentro.isSelected()==false)){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
+    	if(s_max.length()>0) {
+    		try {
+    			salaryMax=Integer.parseInt(s_max);
+    			
+    		} catch(NumberFormatException e) {
+    			lbnRicercaGiocatore.setText("Salario massimo non valido");
+    			return;
+    		}
+    	}
+    	
+    	if(bxGuardia.isSelected()==false && bxForward.isSelected()==false && bxCentro.isSelected()==false) {
+    		lbnRicercaGiocatore.setText("Scegliere un ruolo");
+    		return;
+    	}
+    	
+    	if(g_cerca.length()==0 && boxCaratteristiche.getValue()==null){ //////DA AGGIUNGERE CONDIZIONE SU SCELTA ARCHETIPO
     		lbnRicercaGiocatore.setText("Scegliere giocatore");
     		return;
     	}
-    	else {
-    		
-    		ObservableList<Giocatore> giocatore=FXCollections.observableArrayList(model.getGiocatore(g_cerca));
+    	
+    	String ruolo="";
+		if(bxGuardia.isSelected())
+			ruolo=ruolo+"G";
+		if(bxGuardia.isSelected() && bxForward.isSelected())
+			ruolo=ruolo+"-F";
+		if(!bxGuardia.isSelected() && bxForward.isSelected())
+			ruolo=ruolo+"F";
+		if((bxGuardia.isSelected() || bxForward.isSelected() ) && bxCentro.isSelected())
+			ruolo=ruolo+"-C";
+		if(!bxGuardia.isSelected() && !bxForward.isSelected() && bxCentro.isSelected())
+			ruolo=ruolo+"C";
+		
+    	if(g_cerca.length()!=0) {	
+    		ObservableList<Giocatore> giocatore=FXCollections.observableArrayList(model.getGiocatore(g_cerca,salaryMax,ruolo));
     		if(giocatore.size()==0) {
     			lbnRicercaGiocatore.setText("Non esistente");
     			return;
@@ -476,6 +512,35 @@ public class FXMLController {
     		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
     		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
     		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		return;
+    	}
+    	
+    	if(g_cerca.length()==0 && boxCaratteristiche.getValue()!=null) {
+    		String tipo=boxCaratteristiche.getValue();
+    		if(tipo.equals("Scorer")) {
+    			ObservableList<Giocatore> gliScorer=FXCollections.observableArrayList(model.getListaOrdinataScorer(ruolo, squadraScelta,salaryMax));
+    			tvCerca.setItems(gliScorer);
+        		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+        		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
+        		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		}
+    		if(tipo.equals("Assistman")) {
+    			ObservableList<Giocatore> gliAssist=FXCollections.observableArrayList(model.getListaOrdinataAssist(ruolo, squadraScelta,salaryMax));
+    			tvCerca.setItems(gliAssist);
+        		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+        		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
+        		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		}
+    		if(tipo.equals("Rimbalzista")) {
+    			ObservableList<Giocatore> iRimbalzi=FXCollections.observableArrayList(model.getListaOrdinataRimbalzi(ruolo, squadraScelta,salaryMax));
+    			tvCerca.setItems(iRimbalzi);
+        		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
+        		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
+        		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		}
     		
     	}
     }
@@ -570,10 +635,8 @@ public class FXMLController {
 
 	public void setModel(Model model2) {
 		this.model=model2;
-		//File file = new File("im/easternlogo.png");
 		immEst.setImage(estlogo);//new Image(file.toURI().toString()));
 		
-	//	File file2 = new File("im/westernlogo.png");
 		immWest.setImage(westlogo);
 		
 		File file3 = new File("im/nbalogo.png");

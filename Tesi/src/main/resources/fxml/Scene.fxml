@@ -76,14 +76,26 @@
                <children>
                   <VBox>
                      <children>
-                        <Label text="Roster">
+                        <HBox>
+                           <children>
+                              <Label text="Roster">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Salary Cap:">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
                            <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" />
+                              <Insets left="15.0" />
                            </VBox.margin>
-                           <font>
-                              <Font name="System Bold Italic" size="14.0" />
-                           </font>
-                        </Label>
+                        </HBox>
                         <TableView fx:id="tvRoster">
                           <columns>
                             <TableColumn fx:id="tbNomeRoster" prefWidth="100.0" text="Nome" />
@@ -154,12 +166,17 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <TextField fx:id="txtGiocatore" maxWidth="100.0" promptText="Trova Giocatore">
+                        <TextField fx:id="txtGiocatore" prefWidth="100.0" promptText="Trova Giocatore">
                            <VBox.margin>
                               <Insets right="5.0" />
                            </VBox.margin>
                         </TextField>
                         <Label fx:id="lbnRicercaGiocatore" />
+                        <TextField fx:id="txtMaxSalary" prefWidth="100.0" promptText="Max Salary">
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
                         <Button fx:id="btnAcquista" mnemonicParsing="false" onAction="#doAcquista" text="Acquista">
                            <VBox.margin>
                               <Insets left="35.0" right="5.0" top="30.0" />
@@ -167,7 +184,7 @@
                         </Button>
                         <Button fx:id="btnStatisticheDx" mnemonicParsing="false" onAction="#doStatisticheDx" text="Statistiche">
                            <VBox.margin>
-                              <Insets left="25.0" right="5.0" top="233.0" />
+                              <Insets left="25.0" right="5.0" top="202.0" />
                            </VBox.margin>
                         </Button>
                      </children>

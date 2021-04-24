@@ -93,6 +93,31 @@ public class SquadreDAO {
 		return null;
 	}
 	
+	
+	public List<Squadre> tutteSquadre() {
+		String sql="SELECT DISTINCT * "
+				+ "FROM teams";
+		List<Squadre> result=new ArrayList<Squadre>();
+		try {
+			Connection conn=DBConnect.getConnection();
+			PreparedStatement st=conn.prepareStatement(sql);
+			
+			ResultSet rs=st.executeQuery();
+			
+			while(rs.next()) {
+				Squadre sq=new Squadre(rs.getString("abbreviation"),rs.getString("name"),rs.getString("conference"));
+				result.add(sq);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return result;
+	}
+	
+	
 	public Integer getSalaryCap(Squadre s) {
 		String sql="SELECT SUM(Salary) "
 				+ "FROM nba_2k "

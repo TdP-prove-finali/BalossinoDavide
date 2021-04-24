@@ -1,6 +1,7 @@
 package it.polito.tdp.TE_impostazione;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -23,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
 public class CediController {
@@ -99,18 +104,19 @@ public class CediController {
     private TableColumn<Giocatore, Integer> tcIngaggio;
     
     private ObservableList<Archetipo> tipi=FXCollections.observableArrayList(); 
-    private Squadre scelta;
     private Integer spazioSalariale;
+    private int roster;
 
     @FXML
     void doCerca(ActionEvent event) {
+    	lbnAvvisi.setText("");
     	ObservableList<Giocatore> trovati=FXCollections.observableArrayList();
     	trovati.clear();
     	
     	if(tipi.size()>0) {
     		System.out.println(tipi.size());
     	long inizio=System.currentTimeMillis();
-    	trovati.addAll(model.trovaMiglioriGiocatori(tipi, scelta, spazioSalariale));
+    	trovati.addAll(model.trovaMiglioriGiocatori(tipi, spazioSalariale));
     	long fine=System.currentTimeMillis();
     	System.out.println(fine-inizio);
     	tvGiocatori.setItems(trovati);
@@ -128,6 +134,7 @@ public class CediController {
     		return;
     	}
     	else {
+    		if(roster-model.selezionati().size()+tipi.size()<17) {
     		String ruolo="";
     		if(bxGuardia.isSelected())
     			ruolo=ruolo+"G";
@@ -141,23 +148,46 @@ public class CediController {
     			ruolo=ruolo+"C";
     		String tipo=boxCaratteristiche.getValue();
     		if(tipo==null) { //////////AAAAAAAAAAAAAAAAAAAAAAAAAA
-    			tipo="Qualunque";
+    			lbnAvvisi.setText("Selezionare un archetipo");
+        		return;
     		}
     		
     		tipi.add(new Archetipo(tipo, ruolo));
     		tvArchetipi.setItems(tipi);
     		tcArchetipo.setCellValueFactory(new PropertyValueFactory<Archetipo,String>("tipo"));
     		tcCerca.setCellValueFactory(new PropertyValueFactory<Archetipo,String>("ruolo"));
+    	  }
+    		else {
+    			lbnAvvisi.setText("Il roster supererebbe il limite di 17 giocaotri");
+    			return;
+    		}
     	}
     }
 
     @FXML
-    void doDettagli(ActionEvent event) {
-
+    void doDettagli(ActionEvent event) throws IOException {
+    	lbnAvvisi.setText("");
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/dettagli.fxml"));
+    	Parent root=loader.load();
+    	DettagliController controller= loader.getController();
+    	
+    	Scene scene= new Scene(root);
+    	scene.getStylesheets().add("/styles/Styles.css");
+    	
+    	Model ml=new Model();
+    	controller.setModel(ml);
+    	
+    	Stage s=new Stage();
+    	s.setTitle("Dettagli");
+    	s.setScene(scene);
+    	s.setX(+790.0);
+    	s.setY(+5.0);
+    	s.show();
     }
 
     @FXML
     void doRimuovi(ActionEvent event) {
+    	lbnAvvisi.setText("");
     	Archetipo a=tvArchetipi.getSelectionModel().getSelectedItem();
     	if(a!=null) {
     		tipi.remove(a);
@@ -192,6 +222,7 @@ public class CediController {
     
     public void setModel(Model m, Squadre squadra) {
     	this.model=m;
+    	lbnAvvisi.setText("");
     	String testo="";
     	if(model.selezionati().size()==1)
     		testo=model.selezionati().get(0).getNome();
@@ -215,13 +246,13 @@ public class CediController {
 		
 		if(model.getLivelloSalaryCap(squadra)<=model.getLimiteSalariale()) {
 		double p=model.getLivelloSalaryCap(squadra);
-		lbnSalary.setText(""+String.format("%.3f",(p/1000000)));
-		lbnSalary.setTextFill(Color.color(0, 1, 0));} 
+		lbnSalary.setText(""+String.format("%.3f ",(p/1000000)));
+		lbnSalary.setTextFill(Color.color(0.5,0.8,0 ));} 
 		
 		if(model.getLivelloSalaryCap(squadra)>model.getLimiteSalariale()) {
 			lbnSalary.setText(""+model.getLivelloSalaryCap(squadra));
 			double p=model.getLivelloSalaryCap(squadra);
-			lbnSalary.setText(""+String.format("%.3f",(p/1000000)));
+			lbnSalary.setText(""+String.format("%.3f ",(p/1000000)));
 			lbnSalary.setTextFill(Color.color(1, 0, 0));}
 		
 		spazioSalariale=model.getSpazioSalaryCap(squadra);
@@ -229,6 +260,7 @@ public class CediController {
 		File fileImm=new File("im/generalManager3.jpg");
 		Image imm=new Image(fileImm.toURI().toString());
 		spazioImm.setImage(imm);
+		roster=model.getRoster(model.getSquadraSelezionata()).size();
     }
 }
 
