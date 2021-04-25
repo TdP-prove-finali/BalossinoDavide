@@ -37,12 +37,15 @@ public class Giocatore {
 	private Float pesoScorer;
 	private Float pesoAssist;
 	private Float pesoRimbalzi;
+	private Float pesoTiratoreDa3;
+	private Float pesoTiratoreDa2;
+	private Float pesoUomoSquadra;
 	
 	public Giocatore(String nome, Squadre squadra, Integer eta, Integer salary, String posizione, Integer games_palyed,
 			Integer games_started, Float minutes_pergame, Float fg_made, Float fg_attemp, String fg_perc, Float p3_made,
 			String p3_perce, Float p3_attemp, Float p2_made, String p2_perce, Float p2_attemp, Float orimb, Float drimb,
 			Float trimb, Float assist, Float steal, Float turnovers, Float points, Float plus, Float vorp, Float blocks,
-			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi) {
+			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi, Float pesoTiratoreDa3, Float pesoTiratoreDa2, Float pesoUomoSquadra) {
 		super();
 		this.nome = nome;
 		this.squadra = squadra;
@@ -78,6 +81,13 @@ public class Giocatore {
 		setPesoScorer(points);
 		setPesoAssist(assist);
 		setPesoRimbalzi(trimb);
+		this.pesoTiratoreDa3=pesoTiratoreDa3;
+		setPesoTiratoreDa3Inizio();
+		this.pesoTiratoreDa2=pesoTiratoreDa2;
+		this.pesoUomoSquadra=pesoUomoSquadra;
+		setPesoTiratoreDa2Inizio(); 
+		//SET UOMOSQUADRA
+		setPesoUomoSquadra(pesoUomoSquadra);
 	}
 	public String getNome() {
 		return nome;
@@ -182,6 +192,43 @@ public class Giocatore {
 	}
 	public void setPesoRimbalzi(Float pesoRimbalzi) {
 		this.pesoRimbalzi = pesoRimbalzi;
+	}
+	
+	public Float getPesoTiratoreDa3() {
+		return pesoTiratoreDa3;
+	}
+	
+	public void setPesoTiratoreDa3(Float pesoTiratoreDa3) {
+		this.pesoTiratoreDa3=pesoTiratoreDa3;
+	}
+	
+	private void setPesoTiratoreDa3Inizio() {
+		try {
+			pesoTiratoreDa3=Float.parseFloat(p3_perce);
+		} catch(NumberFormatException e) {
+			pesoTiratoreDa3=0f;
+		}
+	}
+	
+	private void setPesoTiratoreDa2Inizio() {
+		try {
+			pesoTiratoreDa3=Float.parseFloat(p3_perce);
+		} catch(NumberFormatException e) {
+			pesoTiratoreDa3=0f;
+		}
+	}
+	
+	public Float getPesoTiratoreDa2() {
+		return pesoTiratoreDa2;
+	}
+	public void setPesoTiratoreDa2(Float pesoTiratoreDa2) {
+		this.pesoTiratoreDa2 = pesoTiratoreDa2;
+	}
+	public Float getPesoUomoSquadra() {
+		return pesoUomoSquadra;
+	}
+	public void setPesoUomoSquadra(Float pesoUomoSquadra) {
+		this.pesoUomoSquadra = pesoUomoSquadra;
 	}
 	
 	@Override
