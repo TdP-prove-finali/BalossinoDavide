@@ -143,6 +143,57 @@ public class Model {
 			return lrimbalzi;
 		}
 	
+	private String ruoloFattoTiratoriDa3;
+	public List<Giocatore> listaTiratoriDa3(Integer spazioSalariale, String posizione){
+		if(ruoloFattoTiratoriDa3==null || !ruoloFattoTiratoriDa3.contains(posizione)) {
+			lda3=giocatoriDao.getListaGiocatoriAccessibiliTiratoriDa3(spazioSalariale,squadraSelezionata,posizione);
+			
+			Collections.sort(lda3,new Comparator<Giocatore>(){
+
+				@Override
+				public int compare(Giocatore o1, Giocatore o2) {
+					return -Float.compare(o1.getPesoTiratoreDa3(), o2.getPesoTiratoreDa3());
+				}	
+				
+			});
+			ruoloFattoTiratoriDa3=posizione;}
+			return lda3;
+		}
+	
+	private String ruoloFattoTiratoriDa2;
+	public List<Giocatore> listaTiratoriDa2(Integer spazioSalariale, String posizione){
+		if(ruoloFattoTiratoriDa2==null || !ruoloFattoTiratoriDa2.contains(posizione)) {
+			lda2=giocatoriDao.getListaGiocatoriAccessibiliTiratoriDa2(spazioSalariale,squadraSelezionata,posizione);
+			
+			Collections.sort(lda2,new Comparator<Giocatore>(){
+
+				@Override
+				public int compare(Giocatore o1, Giocatore o2) {
+					return -Float.compare(o1.getPesoTiratoreDa2(), o2.getPesoTiratoreDa2());
+				}	
+				
+			});
+			ruoloFattoTiratoriDa2=posizione;}
+			return lda2;
+		}
+	
+	private String ruoloFattoUomoSquadra;
+	public List<Giocatore> listaUominiSquadra(Integer spazioSalariale, String posizione){
+		if(ruoloFattoUomoSquadra==null || !ruoloFattoUomoSquadra.contains(posizione)) {
+			lplus=giocatoriDao.getListaGiocatoriAccessibiliUomoSquadra(spazioSalariale,squadraSelezionata,posizione);
+			
+			Collections.sort(lplus,new Comparator<Giocatore>(){
+
+				@Override
+				public int compare(Giocatore o1, Giocatore o2) {
+					return -Float.compare(o1.getPesoUomoSquadra(), o2.getPesoUomoSquadra());
+				}	
+				
+			});
+			ruoloFattoUomoSquadra=posizione;}
+			return lplus;
+		}
+	
 	/*
 	public List<Giocatore> listaAssist(){
 		return null;
@@ -178,7 +229,7 @@ public class Model {
 		return spazioSalariale;
 	}
 	
-	private int nscorer=0,nassist=0,nrimb=0;
+//	private int nscorer=0,nassist=0,nrimb=0;
 	public List<Giocatore> trovaMiglioriGiocatori(List<Archetipo> scelti, Integer spazioSalariale){
 		//if(trovati!=null)
 		trovati.clear();
@@ -191,21 +242,39 @@ public class Model {
 		List<String> ordine=new ArrayList<String>();
 		for(Archetipo a:scelti) {
 			if(a.getTipo().equals("Scorer")) {
-				nscorer++;
+		//		nscorer++;
 				ruoli.add(a.getRuolo());
 				ordine.add("Scorer");
 			}
 				
 			if(a.getTipo().equals("Assistman")) {
-				nassist++;
+		//		nassist++;
 				ruoli.add(a.getRuolo());
 				ordine.add("Assistman");
 			}
 				
 			if(a.getTipo().equals("Rimbalzista")) {
-				nrimb++;
+		//		nrimb++;
 				ruoli.add(a.getRuolo());
 				ordine.add("Rimbalzista");
+			}
+			
+			if(a.getTipo().equals("Tiratore da 3")) {
+		//		nrimb++;
+				ruoli.add(a.getRuolo());
+				ordine.add("Tiratore da 3");
+			}
+			
+			if(a.getTipo().equals("Tiratore da 2")) {
+		//		nrimb++;
+				ruoli.add(a.getRuolo());
+				ordine.add("Tiratore da 2");
+			}
+			
+			if(a.getTipo().equals("Uomo squadra")) {
+			//	nrimb++;
+				ruoli.add(a.getRuolo());
+				ordine.add("Uomo squadra");
 			}
 				
 		}
@@ -281,6 +350,60 @@ public class Model {
 					}
 			}
 		}
+			
+			if(parziale.size()==numero) {
+				break;
+			}
+			
+			if(ordine.get(livello).equals("Tiratore da 3")) {
+				for(Giocatore g:listaTiratoriDa3(spazioSalariale,ruoli.get(livello))) {
+					if(!parziale.contains(g)) {
+						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione()))) {
+							parziale.add(g);
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);	
+							if(parziale.size()==numero) {
+								break;
+							}
+						}
+					}
+			}
+		}
+			
+			if(parziale.size()==numero) {
+				break;
+			}
+			
+			if(ordine.get(livello).equals("Tiratore da 2")) {
+				for(Giocatore g:listaTiratoriDa2(spazioSalariale,ruoli.get(livello))) {
+					if(!parziale.contains(g)) {
+						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione()))) {
+							parziale.add(g);
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);	
+							if(parziale.size()==numero) {
+								break;
+							}
+						}
+					}
+			}
+		}
+			
+			if(parziale.size()==numero) {
+				break;
+			}
+			
+			if(ordine.get(livello).equals("Uomo squadra")) {
+				for(Giocatore g:listaUominiSquadra(spazioSalariale,ruoli.get(livello))) {
+					if(!parziale.contains(g)) {
+						if(parziale.size()<numero && (g.getPosizione().contains(ruoli.get(livello)) || ruoli.get(livello).contains(g.getPosizione()))) {
+							parziale.add(g);
+							faiRicorsione(spazioSalariale-g.getSalary(),parziale,ruoli,ordine,livello+1,numero);	
+							if(parziale.size()==numero) {
+								break;
+							}
+						}
+					}
+			}
+		}
 	//	livello=parziale.size();	
 	}
 	/*	for(Giocatore g:lscorer) {
@@ -302,11 +425,23 @@ public class Model {
 	}
 	
 	public List<Giocatore> getListaOrdinataAssist(String ruolo,Squadre s, Integer salaryMax){
-		return giocatoriDao.getAsssist(ruolo, s,salaryMax);
+		return giocatoriDao.getAssist(ruolo, s,salaryMax);
 	}
 	
 	public List<Giocatore> getListaOrdinataRimbalzi(String ruolo,Squadre s,Integer salaryMax){
 		return giocatoriDao.getRimbalzisti(ruolo, s, salaryMax);
+	}
+	
+	public List<Giocatore> getListaOrdinataTiratoriDa3(String ruolo,Squadre s,Integer salaryMax){
+		return giocatoriDao.getTiratoriDa3(ruolo, s, salaryMax);
+	}
+	
+	public List<Giocatore> getListaOrdinataTiratoriDa2(String ruolo,Squadre s,Integer salaryMax){
+		return giocatoriDao.getTiratoriDa2(ruolo, s, salaryMax);
+	}
+	
+	public List<Giocatore> getListaOrdinataUominiSquadra(String ruolo,Squadre s,Integer salaryMax){
+		return giocatoriDao.getUominiSquadraOrdinati(ruolo, s, salaryMax);
 	}
 	
 	
@@ -320,9 +455,18 @@ public class Model {
 		lscorer.clear();
 		if(lrimbalzi!=null)
 		lrimbalzi.clear();
+		if(lda3!=null)
+			lda3.clear();
+		if(lda2!=null)
+			lda2.clear();
+		if(lplus!=null)
+			lplus.clear();
 		ruoloFattoScorer=null;
 		ruoloFattoAssist=null;
 		ruoloFattoRimbalzi=null;
+		ruoloFattoUomoSquadra=null;
+		ruoloFattoTiratoriDa3=null;
+		ruoloFattoTiratoriDa2=null;
 	}
 	
 }

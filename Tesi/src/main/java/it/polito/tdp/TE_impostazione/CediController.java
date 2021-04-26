@@ -237,7 +237,6 @@ public class CediController {
     	List<String> archetipi=new ArrayList<String>();
 		archetipi.add("Scorer");
 		archetipi.add("Assistman");
-		archetipi.add("Stoppatore");
 		archetipi.add("Uomo squadra");
 		archetipi.add("Tiratore da 3");
 		archetipi.add("Tiratore da 2");

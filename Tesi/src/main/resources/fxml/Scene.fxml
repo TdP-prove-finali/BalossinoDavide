@@ -37,7 +37,7 @@
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Scegli la squadra">
                      <HBox.margin>
@@ -72,9 +72,9 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox fx:id="hbox2">
+            <HBox fx:id="hbox2" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <HBox>
                            <children>
@@ -101,7 +101,7 @@
                             <TableColumn fx:id="tbNomeRoster" prefWidth="100.0" text="Nome" />
                             <TableColumn fx:id="tbPointsRoster" prefWidth="71.0" text="Punti" />
                               <TableColumn fx:id="tbAssistsRoster" prefWidth="64.0" text="Assists" />
-                              <TableColumn fx:id="tbReboundsRoster" prefWidth="65.0" text="Rimbalzi" />
+                              <TableColumn fx:id="tbReboundsRoster" prefWidth="67.0" text="Rimbalzi" />
                           </columns>
                            <VBox.margin>
                               <Insets left="10.0" top="15.0" />
@@ -109,7 +109,7 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <Button fx:id="btnCedi" alignment="CENTER" mnemonicParsing="false" onAction="#doCedi" text="Cedi">
                            <VBox.margin>
@@ -131,7 +131,7 @@
                         </Label>
                         <Button fx:id="btnCercaLista" mnemonicParsing="false" onAction="#doCercaLista" text="Cerca">
                            <VBox.margin>
-                              <Insets left="5.0" top="68.0" />
+                              <Insets left="5.0" top="78.0" />
                            </VBox.margin>
                         </Button>
                         <Button fx:id="btnStatisticheSx" mnemonicParsing="false" onAction="#doStatisticheSx" text="Statistiche">
@@ -141,7 +141,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fx:id="immEst" fitHeight="104.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -164,7 +164,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <TextField fx:id="txtGiocatore" prefWidth="100.0" promptText="Trova Giocatore">
                            <VBox.margin>
@@ -182,14 +182,29 @@
                               <Insets left="35.0" right="5.0" top="30.0" />
                            </VBox.margin>
                         </Button>
+                        <Label text="Lista:">
+                           <VBox.margin>
+                              <Insets left="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="lbnGiocatoriDaAcquistare">
+                           <VBox.margin>
+                              <Insets left="5.0" top="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="btnCercaAcquisti" mnemonicParsing="false" onAction="#doCercaAcquisti" text="Cerca">
+                           <VBox.margin>
+                              <Insets left="50.0" right="5.0" top="45.0" />
+                           </VBox.margin>
+                        </Button>
                         <Button fx:id="btnStatisticheDx" mnemonicParsing="false" onAction="#doStatisticheDx" text="Statistiche">
                            <VBox.margin>
-                              <Insets left="25.0" right="5.0" top="202.0" />
+                              <Insets left="25.0" right="5.0" top="95.0" />
                            </VBox.margin>
                         </Button>
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <HBox>
                            <children>
