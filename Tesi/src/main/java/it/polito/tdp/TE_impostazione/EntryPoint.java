@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+// #ff9999
 public class EntryPoint extends Application {
 
     @Override

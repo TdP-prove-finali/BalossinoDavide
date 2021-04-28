@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import it.polito.tdp.TE_impostazione.model.Giocatore;
 import it.polito.tdp.TE_impostazione.model.Model;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.CheckBox;
+import javafx.scene.input.KeyEvent;
 
 public class FXMLController {
 
@@ -600,6 +602,19 @@ public class FXMLController {
     @FXML
     void doCercaAcquisti(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void premuto(KeyEvent event) {
+    	String n=event.getCharacter();
+    	String s=txtMaxSalary.getText();
+    	if(n.matches("[0-9]")){
+    		String g=Pattern.compile("\\D").matcher(s).replaceAll("");
+    	if((g.length()-1)%3==0 && g.length()!=1) { 
+    		txtMaxSalary.setText(s.substring(0,s.length()-1)+"."+""+s.charAt(s.length()-1));
+    		txtMaxSalary.end();
+    	}
+    }
     }
     
     @FXML

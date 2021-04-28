@@ -1,3 +1,113 @@
 .button {
     -fx-font-weight: bold;
 }
+#sfondoTutto{
+    -fx-background-color: linear-gradient(to right, #ff6600 0%, #ffff66 100%);
+}
+
+#confermaAlto{
+-fx-background-radius:30;
+-fx-padding: 7 10 7 10;
+
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#reset{
+-fx-background-radius:10;
+-fx-padding: 7 10 7 10;
+
+-fx-background-color: 
+  #707070,
+  linear-gradient(#fcfcfc, #f3f3f3),
+  linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+-fx-background-insets: 0,1,2;
+
+-fx-text-fill: black;
+}
+
+#statDx{
+-fx-background-color: 
+  #707070,
+  linear-gradient(#fcfcfc, #f3f3f3),
+  linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+-fx-background-insets: 0,1,2;
+-fx-background-radius: 3,2,1;
+-fx-text-fill: black;
+}
+
+#statSx{
+-fx-background-color: 
+  #707070,
+  linear-gradient(#fcfcfc, #f3f3f3),
+  linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+-fx-background-insets: 0,1,2;
+-fx-background-radius: 3,2,1;
+-fx-text-fill: black;
+}
+
+#possSx{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#cedi{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#possDx{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#acquista{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#legenda{
+-fx-background-color: 
+  #707070,
+  linear-gradient(#fcfcfc, #f3f3f3),
+  linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+-fx-background-radius:20;
+-fx-background-insets: 0,1,2;
+-fx-padding: 5 7 5 7;
+-fx-text-fill: black;
+}
+
+#confermaArch{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
