@@ -67,17 +67,17 @@
                   </Label>
                   <ImageView fx:id="immNBA" fitHeight="120.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
-                        <Insets left="50.0" top="-10.0" />
+                        <Insets left="70.0" top="-30.0" />
                      </HBox.margin>
                      <image>
-                        <Image url="@../../../../nbalogo.png" />
+                        <Image url="@../../../../im/nbalogo.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
             <HBox fx:id="hbox2" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox HBox.hgrow="ALWAYS">
+                  <VBox>
                      <children>
                         <HBox>
                            <children>
@@ -97,9 +97,9 @@
                         <TableView fx:id="tvRoster" style="-fx-border-color: black;">
                           <columns>
                             <TableColumn fx:id="tbNomeRoster" prefWidth="100.0" text="Nome" />
-                            <TableColumn fx:id="tbPointsRoster" prefWidth="71.0" text="Punti" />
-                              <TableColumn fx:id="tbAssistsRoster" prefWidth="64.0" text="Assists" />
-                              <TableColumn fx:id="tbReboundsRoster" prefWidth="67.0" text="Rimbalzi" />
+                            <TableColumn fx:id="tbPointsRoster" prefWidth="69.0" text="Punti" />
+                              <TableColumn fx:id="tbAssistsRoster" prefWidth="68.0" text="Assists" />
+                              <TableColumn fx:id="tbReboundsRoster" prefWidth="63.0" text="Rimbalzi" />
                           </columns>
                            <VBox.margin>
                               <Insets left="10.0" top="15.0" />
@@ -118,6 +118,9 @@
                            </children>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
@@ -155,7 +158,7 @@
                      <children>
                         <ImageView fx:id="immEst" fitHeight="104.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Desktop/TESI/Wizards.png" />
+                              <Image url="@../../../../im/westernlogo.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="15.0" right="15.0" top="30.0" />
@@ -169,7 +172,7 @@
                               <Insets left="10.0" right="10.0" top="175.0" />
                            </VBox.margin>
                            <image>
-                              <Image url="@../../../../westernlogo.png" />
+                              <Image url="@../../../../im/easternlogo.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -189,7 +192,7 @@
                         </TextField>
                         <Button id="acquista" fx:id="btnAcquista" mnemonicParsing="false" onAction="#doAcquista" text="Acquista">
                            <VBox.margin>
-                              <Insets left="35.0" right="5.0" top="30.0" />
+                              <Insets left="35.0" top="30.0" />
                            </VBox.margin>
                         </Button>
                         <Label text="Lista:">
@@ -204,12 +207,12 @@
                         </Label>
                         <Button id="possDx" fx:id="btnCercaAcquisti" mnemonicParsing="false" onAction="#doCercaAcquisti" text="Possibilita">
                            <VBox.margin>
-                              <Insets left="30.0" right="5.0" top="45.0" />
+                              <Insets left="30.0" top="45.0" />
                            </VBox.margin>
                         </Button>
                         <Button id="statDx" fx:id="btnStatisticheDx" mnemonicParsing="false" onAction="#doStatisticheDx" text="Statistiche" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets left="30.0" right="5.0" top="95.0" />
+                              <Insets left="30.0" top="95.0" />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -263,7 +266,7 @@
                               </VBox>
                               <Button id="legenda" fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Legenda">
                                  <HBox.margin>
-                                    <Insets left="10.0" right="5.0" />
+                                    <Insets left="5.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -281,7 +284,7 @@
                                     <TableColumn fx:id="tcReboundCerca" prefWidth="63.0" text="Rimbalzi" />
                                 </columns>
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets left="15.0" right="5.0" />
                                  </HBox.margin>
                               </TableView>
                            </children>
