@@ -471,9 +471,8 @@ public class Model {
 		if(nMax==livello) {
 			if(liberato>=costo && nMin<=livello) {
 			if(controllaDoppioni(results,parziale)==false) {
-	//			List<Giocatore> provvisoria=new ArrayList<Giocatore>(parziale);
 				
-				results.add(parziale);
+				results.add(new ArrayList<Giocatore>(parziale));
 				return;
 			}
 			else
@@ -485,10 +484,10 @@ public class Model {
 		if(liberato>=costo && livello>=nMin) {
 			if(nMax>=livello) {
 			if(controllaDoppioni(results,parziale)==false) {
-				results.add(parziale);
+				results.add(new ArrayList<Giocatore>(parziale));
 				return; //per evitare ad esempio mi dia curry,curry+minimo,curry+minimo+minimo
 			}
-			return;
+			//return;
 			}
 		}
 		
@@ -532,7 +531,11 @@ public class Model {
 					}	
 				});
 				
-				if(l.get(0).equals(result.get(0)) && l.get(0).equals(result.get(0)) && l.get(0).equals(result.get(0)))
+				int flag=0;
+				for(int i=0;i<size && flag==0;i++) {
+				if(!l.get(i).equals(result.get(i)))
+					flag=1;}
+				if(flag==0)
 					return true;
 			}
 		}

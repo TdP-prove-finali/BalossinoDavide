@@ -72,7 +72,7 @@ public class AcquistaController {
     @FXML
     void doIncedibili(ActionEvent event) {
     	Giocatore g=tvRoster.getSelectionModel().getSelectedItem();
-    	if(g!=null) {
+    	if(g!=null && incedibili.size()<5) {
     		if(incedibili.contains(g)) {
     			incedibili.remove(g);
     			setLabelIncedibili();
@@ -108,14 +108,15 @@ public class AcquistaController {
     private List<List<Giocatore>> possibilita=new ArrayList<List<Giocatore>>();
     @FXML
     void doPossibilita(ActionEvent event) {
-    	ObservableList<Giocatore> result=FXCollections.observableArrayList();
-    	result.clear();
+    	
     	
     	if(b==0) {
-    		
+    		ObservableList<Giocatore> result=FXCollections.observableArrayList();
+        	result.clear();
+    		b=1;
     		possibilita=model.trovaPossibilita(incedibili);
     		
-    		System.out.println("AAAA");
+    		
     		System.out.println(possibilita.size());
     		c=possibilita.size();
     		result.addAll(possibilita.get(0));
@@ -131,6 +132,9 @@ public class AcquistaController {
     	}
     	
     	if(b==1 && c>cont) {
+    		lbnAvviso.setText("");
+    		ObservableList<Giocatore> result=FXCollections.observableArrayList();
+        	result.clear();
     		if(cont==0) {
     			result.addAll(possibilita.get(0));
         		tvPossibilita.setItems(result);
