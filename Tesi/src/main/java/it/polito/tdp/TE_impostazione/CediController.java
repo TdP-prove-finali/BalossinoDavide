@@ -113,17 +113,17 @@ public class CediController {
     	ObservableList<Giocatore> trovati=FXCollections.observableArrayList();
     	trovati.clear();
     	
-    	if(tipi.size()>0) {
-    		System.out.println(tipi.size());
-    	long inizio=System.currentTimeMillis();
+    	//if(tipi.size()>0) {
+    	//	System.out.println(tipi.size());
+    	//long inizio=System.currentTimeMillis();
     	trovati.addAll(model.trovaMiglioriGiocatori(tipi, spazioSalariale));
-    	long fine=System.currentTimeMillis();
-    	System.out.println(fine-inizio);
+    	//long fine=System.currentTimeMillis();
+    	//System.out.println(fine-inizio);
     	tvGiocatori.setItems(trovati);
     	tcNome.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
     	tcSquadra.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
     	tcIngaggio.setCellValueFactory(new PropertyValueFactory<Giocatore,Integer>("salary"));
-    	System.out.println(trovati.size());}
+    //	System.out.println(trovati.size());
     }
 
     @FXML
@@ -249,7 +249,7 @@ public class CediController {
 		lbnSalary.setTextFill(Color.color(0.5,0.8,0 ));} 
 		
 		if(model.getLivelloSalaryCap(squadra)>model.getLimiteSalariale()) {
-			lbnSalary.setText(""+model.getLivelloSalaryCap(squadra));
+			//lbnSalary.setText(""+model.getLivelloSalaryCap(squadra)); //SECONDO ME INUTILE
 			double p=model.getLivelloSalaryCap(squadra);
 			lbnSalary.setText(""+String.format("%.3f ",(p/1000000)));
 			lbnSalary.setTextFill(Color.color(1, 0, 0));}

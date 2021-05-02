@@ -3,8 +3,10 @@ package it.polito.tdp.TE_impostazione;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -58,6 +60,9 @@ public class FXMLController {
     private HBox hbox2;
     
     @FXML
+    private Label lbnListaCedi;
+    
+    @FXML
     private Button btnStatisticheDx;
 
     @FXML
@@ -83,6 +88,9 @@ public class FXMLController {
 
     @FXML
     private TableColumn<Giocatore, Float> tbReboundsRoster;
+    
+    @FXML
+    private Label lbnQuantitaSalary;
 
     @FXML
     private Button btnCedi;
@@ -114,6 +122,9 @@ public class FXMLController {
     
     @FXML
     private CheckBox bxGuardia;
+    
+    @FXML
+    private Label lbnListaAcquista;
 
     @FXML
     private CheckBox bxForward;
@@ -218,7 +229,38 @@ public class FXMLController {
 
     @FXML
     void doAcquista(ActionEvent event) {
-
+    	Giocatore g=tvCerca.getSelectionModel().getSelectedItem();
+    	if(g!=null) {
+    		boolean b=model.giaDaAcquistare(g);
+    		if(!b) {
+    			model.aggiungiDaAcquistare(g);
+    		    setLabelDaAcquistare();
+    		    return;
+    		}
+    		else {
+    			model.rimuoviDaAcquistare(g);
+    			setLabelDaAcquistare();
+    			return;
+    		}
+    	}
+    }
+    
+    private void setLabelDaAcquistare() {
+    	lbnGiocatoriDaAcquistare.setText("");
+    	
+    	List<Giocatore> g=model.selezionatiDaAcquistare();
+    	String s="";
+    	if(g.size()>0) {
+    		lbnListaAcquista.setText("Lista:");
+    	for(int i=0;i<g.size()-1;i++)
+    		s=s+""+g.get(i).getNome()+"\n";
+    	s=s+""+g.get(g.size()-1).getNome();
+    	lbnGiocatoriDaAcquistare.setText(s);
+    	}
+    	else {
+    		lbnListaAcquista.setText("");
+    	}
+    	
     }
     
     @FXML
@@ -270,10 +312,14 @@ public class FXMLController {
     	List<Giocatore> g=model.selezionati();
     	String s="";
     	if(g.size()>0) {
+    		lbnListaCedi.setText("Lista:");
     	for(int i=0;i<g.size()-1;i++)
     		s=s+""+g.get(i).getNome()+"\n";
     	s=s+""+g.get(g.size()-1).getNome();
     	Giocatore1.setText(s);
+    	}
+    	else {
+    		lbnListaCedi.setText("");
     	}
     	
     }
@@ -455,6 +501,9 @@ public class FXMLController {
     		
     		squadraScelta=scelta;
     		hbox2.setDisable(false);
+    		String salary1=""+String.format("%.3f ",((float)model.getLivelloSalaryCap(squadraScelta)/1000000));
+    		String salary2=""+String.format("%.3f ",((float)model.getLimiteSalariale()/1000000));
+    		lbnQuantitaSalary.setText(""+salary1+" / "+salary2);
     	//	model.setSquadraScelta(squadraScelta);
     		txtGiocatore.clear();
     		tvCerca.setItems(null);
@@ -479,7 +528,8 @@ public class FXMLController {
     	
     	if(s_max.length()>0) {
     		try {
-    			salaryMax=Integer.parseInt(s_max);
+    			String p=s_max.replace(".", "");
+    			salaryMax=Integer.parseInt(p);
     			
     		} catch(NumberFormatException e) {
     			lbnRicercaGiocatore.setText("Salario massimo non valido");
@@ -600,21 +650,54 @@ public class FXMLController {
     }
     
     @FXML
-    void doCercaAcquisti(ActionEvent event) {
-
+    void doCercaAcquisti(ActionEvent event) throws IOException {
+    	if(model.selezionatiDaAcquistare().size()>0) {
+        	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Acquista.fxml"));
+        	Parent root=loader.load();
+        	AcquistaController controller= loader.getController();
+        	
+        	Scene scene= new Scene(root);
+        	scene.getStylesheets().add("/styles/Styles.css");
+        	
+        	Model ml=new Model();
+        	for(Giocatore g:model.selezionatiDaAcquistare()) {
+        		ml.aggiungiDaAcquistare(g);
+        	}
+        	ml.setSquadraSelezionata(squadraScelta);
+        	controller.setModel(ml);
+        	
+        	Stage s=new Stage();
+        	s.setTitle("Acquista Giocatori");
+        	s.setScene(scene);
+        	s.setX(+600.0);
+        	s.setY(+5.0);
+        	s.show(); }
     }
     
     @FXML
     void premuto(KeyEvent event) {
     	String n=event.getCharacter();
-    	String s=txtMaxSalary.getText();
-    	if(n.matches("[0-9]")){
-    		String g=Pattern.compile("\\D").matcher(s).replaceAll("");
-    	if((g.length()-1)%3==0 && g.length()!=1) { 
-    		txtMaxSalary.setText(s.substring(0,s.length()-1)+"."+""+s.charAt(s.length()-1));
-    		txtMaxSalary.end();
-    	}
-    }
+    
+    	lbnRicercaGiocatore.setText("");
+    	String o=txtMaxSalary.getText();
+    	//if(n.matches("[0-9]")){
+    		String g=Pattern.compile("\\D").matcher(o).replaceAll("");
+    	//}	
+    	NumberFormat nf = NumberFormat.getIntegerInstance( Locale.ITALIAN );
+		nf.setGroupingUsed( true );
+
+		
+		try {
+			long myVal=Long.parseLong(g);
+			String myText = nf.format( myVal );
+			
+			txtMaxSalary.setText(myText);
+			txtMaxSalary.end();
+		} catch(NumberFormatException e) {
+			if(o.length()>0)
+			lbnRicercaGiocatore.setText("Salario non valido");
+		}
+    	
     }
     
     @FXML
@@ -708,6 +791,8 @@ public class FXMLController {
 		archetipi.add("Rimbalzista");
 		boxCaratteristiche.getItems().addAll(archetipi);
 		hbox2.setDisable(true);
+		
+		
 		
 		
 	}

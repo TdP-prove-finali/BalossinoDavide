@@ -26,3 +26,41 @@ public class Test {
 	}
 
 }
+
+/*
+private void faiRicorsione(Integer spazioSalariale, Squadre s ,List<Giocatore> parziale, List<String> ruoli, Integer numero ) {
+if(parziale.size()==numero) {
+	trovati.addAll(parziale);
+	return;
+}
+
+for(Giocatore g:listaScorer(spazioSalariale)) {
+	if(!parziale.contains(g)) {
+		if(parziale.size()<numero) {
+		if(ruoli.get(parziale.size()).contains(g.getPosizione()) || g.getPosizione().contains(ruoli.get(parziale.size()))) {
+			if(g.getSalary()<=spazioSalariale || g.getSalary()<=898310) { //MINIMO SALARIALE
+				parziale.add(g);
+				faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,numero);
+			}
+		}
+	}
+}
+}
+} */
+
+
+
+
+
+/*	for(Giocatore g:lscorer) {
+if(!parziale.contains(g)) {
+	if(parziale.size()<numero) {
+	if(ruoli.get(parziale.size()).contains(g.getPosizione()) || g.getPosizione().contains(ruoli.get(parziale.size()))) {
+		if(g.getSalary()<=spazioSalariale || g.getSalary()<=898310) { //MINIMO SALARIALE
+			parziale.add(g);
+			faiRicorsione(spazioSalariale-g.getSalary(),s,parziale,ruoli,numero);
+		}
+	}
+}
+}
+} */

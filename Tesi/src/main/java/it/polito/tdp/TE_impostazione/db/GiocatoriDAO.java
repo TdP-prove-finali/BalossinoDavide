@@ -1090,6 +1090,52 @@ public class GiocatoriDAO {
 		return result;
 		}
 	
+	
+	public Integer getSommaSalarioGiocatori(List<Giocatore> daAcquistare) {
+		String sql="";
+		if(daAcquistare.size()==1)
+			sql="SELECT SUM(n.Salary) AS somma "
+					+ "FROM nba_2k AS n "
+					+ "WHERE n.Player=?";
+		if(daAcquistare.size()==2)
+			sql="SELECT SUM(n.Salary) AS somma "
+					+ "FROM nba_2k AS n "
+					+ "WHERE n.Player=? OR n.Player=?";
+		if(daAcquistare.size()==3)
+			sql="SELECT SUM(n.Salary) AS somma "
+					+ "FROM nba_2k AS n "
+					+ "WHERE n.Player=? OR n.Player=? OR n.Player=?";
+		
+		try {
+			Connection conn=DBConnect.getConnection();
+			PreparedStatement st=conn.prepareStatement(sql);
+			if(daAcquistare.size()==1)
+				st.setString(1, daAcquistare.get(0).getNome());
+			if(daAcquistare.size()==2) {
+				st.setString(1, daAcquistare.get(0).getNome());
+				st.setString(2, daAcquistare.get(1).getNome());
+			}
+			if(daAcquistare.size()==3) {
+				st.setString(1, daAcquistare.get(0).getNome());
+				st.setString(2, daAcquistare.get(1).getNome());
+				st.setString(3, daAcquistare.get(2).getNome());
+			}
+			ResultSet rs= st.executeQuery();
+			Integer sum=-1;
+			if(rs.next()) {
+				sum=rs.getInt("somma");
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+			
+			return sum;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
 
 

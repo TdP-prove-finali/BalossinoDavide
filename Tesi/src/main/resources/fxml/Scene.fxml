@@ -86,7 +86,7 @@
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="120.0" />
+                                    <Insets bottom="-13.0" left="120.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
@@ -115,6 +115,19 @@
                                     <Insets left="15.0" top="10.0" />
                                  </HBox.margin>
                               </Label>
+                              <Label fx:id="lbnQuantitaSalary">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Milioni">
+                                 <HBox.margin>
+                                    <Insets left="3.0" top="12.0" />
+                                 </HBox.margin>
+                              </Label>
                            </children>
                         </HBox>
                      </children>
@@ -124,12 +137,12 @@
                   </VBox>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Button id="cedi" fx:id="btnCedi" alignment="CENTER" mnemonicParsing="false" onAction="#doCedi" style="-fx-border-color: #ff8080;" text="Cedi">
+                        <Button id="cedi" fx:id="btnCedi" alignment="CENTER" mnemonicParsing="false" onAction="#doCedi" text="Cedi">
                            <VBox.margin>
                               <Insets left="5.0" top="75.0" />
                            </VBox.margin>
                         </Button>
-                        <Label text="Lista:">
+                        <Label fx:id="lbnListaCedi" underline="true">
                            <VBox.margin>
                               <Insets left="2.0" top="15.0" />
                            </VBox.margin>
@@ -195,7 +208,7 @@
                               <Insets left="35.0" top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Label text="Lista:">
+                        <Label fx:id="lbnListaAcquista" underline="true">
                            <VBox.margin>
                               <Insets left="5.0" top="10.0" />
                            </VBox.margin>
