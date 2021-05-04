@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.AcquistaController">
+<BorderPane id="idBorderPane" stylesheets="@../styles/Acquista.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.AcquistaController">
    <top>
-      <Label text="ACQUISTA" BorderPane.alignment="CENTER">
+      <Label id="Titolo" text="ACQUISTA" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" top="5.0" />
          </BorderPane.margin>
@@ -30,12 +30,12 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Giocatori da acquistare:">
+                        <Label id="testo1" text="Giocatori da acquistare:">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbnGiocatoriDaAcquistare" text="Label">
+                        <Label id="giocatori" fx:id="lbnGiocatoriDaAcquistare" text="Label">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -56,17 +56,17 @@
                      <children>
                         <VBox>
                            <children>
-                              <Button mnemonicParsing="false" onAction="#doIncedibili" text="Incedibile">
+                              <Button id="btnIncedibile" mnemonicParsing="false" onAction="#doIncedibili" text="Incedibile">
                                  <VBox.margin>
                                     <Insets left="45.0" />
                                  </VBox.margin>
                               </Button>
-                              <Label fx:id="lbnListaIncedibili" underline="true">
+                              <Label fx:id="lbnListaIncedibili" textFill="#ffc6c6" underline="true">
                                  <VBox.margin>
                                     <Insets left="30.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label fx:id="lbnGiocatoriIncedibili">
+                              <Label id="glista" fx:id="lbnGiocatoriIncedibili">
                                  <VBox.margin>
                                     <Insets left="30.0" top="3.0" />
                                  </VBox.margin>
@@ -84,10 +84,7 @@
                               <Insets top="140.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#doPossibilita" text="Cerca possibilita">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
+                        <Button id="btnCerca" mnemonicParsing="false" onAction="#doPossibilita" text="Cerca possibilita">
                            <VBox.margin>
                               <Insets left="25.0" top="40.0" />
                            </VBox.margin>
@@ -104,7 +101,7 @@
                   </VBox>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="tvRoster" prefHeight="350.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="tvRoster" prefHeight="350.0" style="-fx-border-color: black;;" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="tcRoster1" prefWidth="92.0" text="Nome" />
                             <TableColumn fx:id="tcRoster2" prefWidth="90.0" text="Punti" />
@@ -112,12 +109,12 @@
                               <TableColumn fx:id="tcRoster4" prefWidth="91.0" text="Rimbalzi" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="tvPossibilita" prefHeight="300.0">
+                        <TableView fx:id="tvPossibilita" prefHeight="300.0" style="-fx-border-color: black;">
                           <columns>
-                            <TableColumn fx:id="tcAcquista1" prefWidth="108.0" text="C1" />
-                            <TableColumn fx:id="tcAcquista2" prefWidth="77.0" text="C2" />
-                              <TableColumn fx:id="tcAcquista3" prefWidth="87.0" text="Column X" />
-                              <TableColumn fx:id="tcAcquista4" prefWidth="102.0" text="Column X" />
+                            <TableColumn fx:id="tcAcquista1" prefWidth="108.0" text="Nome" />
+                            <TableColumn fx:id="tcAcquista2" prefWidth="77.0" text="Punti" />
+                              <TableColumn fx:id="tcAcquista3" prefWidth="87.0" text="Assist" />
+                              <TableColumn fx:id="tcAcquista4" prefWidth="102.0" text="Rimbalzi" />
                           </columns>
                            <VBox.margin>
                               <Insets top="10.0" />

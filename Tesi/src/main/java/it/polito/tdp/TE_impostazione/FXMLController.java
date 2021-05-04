@@ -60,6 +60,9 @@ public class FXMLController {
     private HBox hbox2;
     
     @FXML
+    private Label lbnNumeroRoster;
+    
+    @FXML
     private Label lbnListaCedi;
     
     @FXML
@@ -491,15 +494,17 @@ public class FXMLController {
     			immWest.setImage(wizard);
     		}//30
     		
-    		
-    		ObservableList<Giocatore> roster=FXCollections.observableArrayList(model.getRoster(scelta));
+    		List<Giocatore> l=model.getRoster(scelta);
+    		ObservableList<Giocatore> roster=FXCollections.observableArrayList(l);
     		tvRoster.setItems(roster);
     		tbNomeRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
     		tbPointsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
     		tbAssistsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
     		tbReboundsRoster.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
     		
+    		
     		squadraScelta=scelta;
+    		lbnNumeroRoster.setText(""+l.size());
     		hbox2.setDisable(false);
     		String salary1=""+String.format("%.3f ",((float)model.getLivelloSalaryCap(squadraScelta)/1000000));
     		String salary2=""+String.format("%.3f ",((float)model.getLimiteSalariale()/1000000));
@@ -514,7 +519,8 @@ public class FXMLController {
     		bxCentro.setSelected(true);
     		boxCaratteristiche.setValue(null);
     		model.riazzeraModel();
-    		Giocatore1.setText("");
+    		setLabelDaCedere();
+    		setLabelDaAcquistare();
     	}
     }
 
@@ -569,7 +575,7 @@ public class FXMLController {
     		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
     		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
     		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-    		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+    		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		return;
     	}
     	
@@ -581,7 +587,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		if(tipo.equals("Assistman")) {
     			ObservableList<Giocatore> gliAssist=FXCollections.observableArrayList(model.getListaOrdinataAssist(ruolo, squadraScelta,salaryMax));
@@ -589,7 +595,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		if(tipo.equals("Rimbalzista")) {
     			ObservableList<Giocatore> iRimbalzi=FXCollections.observableArrayList(model.getListaOrdinataRimbalzi(ruolo, squadraScelta,salaryMax));
@@ -597,7 +603,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		if(tipo.equals("Tiratore da 3")) {
     			ObservableList<Giocatore> iTiratoriDa3=FXCollections.observableArrayList(model.getListaOrdinataTiratoriDa3(ruolo, squadraScelta,salaryMax));
@@ -605,7 +611,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		if(tipo.equals("Tiratore da 2")) {
     			ObservableList<Giocatore> iTiratoriDa2=FXCollections.observableArrayList(model.getListaOrdinataTiratoriDa2(ruolo, squadraScelta,salaryMax));
@@ -613,7 +619,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		if(tipo.equals("Uomo squadra")) {
     			ObservableList<Giocatore> gliUominiSquadra=FXCollections.observableArrayList(model.getListaOrdinataUominiSquadra(ruolo, squadraScelta,salaryMax));
@@ -621,7 +627,7 @@ public class FXMLController {
         		tbNomeCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
         		tcPointCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
         		tcAssistCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
-        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
+        		tcReboundCerca.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("squadra"));
     		}
     		
     	}
@@ -657,7 +663,7 @@ public class FXMLController {
         	AcquistaController controller= loader.getController();
         	
         	Scene scene= new Scene(root);
-        	scene.getStylesheets().add("/styles/Styles.css");
+        	scene.getStylesheets().add("/styles/Acquista.css");
         	
         	Model ml=new Model();
         	for(Giocatore g:model.selezionatiDaAcquistare()) {

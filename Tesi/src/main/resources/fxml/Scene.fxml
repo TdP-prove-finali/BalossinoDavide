@@ -86,7 +86,23 @@
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets bottom="-13.0" left="120.0" />
+                                    <Insets bottom="-13.0" left="40.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="lbnNumeroRoster">
+                                 <HBox.margin>
+                                    <Insets bottom="-13.0" left="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Giocatori">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="-13.0" left="3.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
@@ -291,10 +307,10 @@
                            <children>
                               <TableView fx:id="tvCerca" style="-fx-border-color: black;">
                                 <columns>
-                                  <TableColumn fx:id="tbNomeCerca" prefWidth="100.0" text="Nome" />
-                                  <TableColumn fx:id="tcPointCerca" prefWidth="69.0" text="Punti" />
-                                    <TableColumn fx:id="tcAssistCerca" prefWidth="68.0" text="Assists" />
-                                    <TableColumn fx:id="tcReboundCerca" prefWidth="63.0" text="Rimbalzi" />
+                                  <TableColumn fx:id="tbNomeCerca" prefWidth="91.0" text="Nome" />
+                                  <TableColumn fx:id="tcPointCerca" prefWidth="49.0" text="Punti" />
+                                    <TableColumn fx:id="tcAssistCerca" prefWidth="50.0" text="Assists" />
+                                    <TableColumn fx:id="tcReboundCerca" prefWidth="110.0" text="Squadra" />
                                 </columns>
                                  <HBox.margin>
                                     <Insets left="15.0" right="5.0" />

@@ -41,11 +41,14 @@ public class Giocatore {
 	private Float pesoTiratoreDa2;
 	private Float pesoUomoSquadra;
 	
+	private String altezza;
+	private String peso;
+	
 	public Giocatore(String nome, Squadre squadra, Integer eta, Integer salary, String posizione, Integer games_palyed,
 			Integer games_started, Float minutes_pergame, Float fg_made, Float fg_attemp, String fg_perc, Float p3_made,
 			String p3_perce, Float p3_attemp, Float p2_made, String p2_perce, Float p2_attemp, Float orimb, Float drimb,
 			Float trimb, Float assist, Float steal, Float turnovers, Float points, Float plus, Float vorp, Float blocks,
-			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi, Float pesoTiratoreDa3, Float pesoTiratoreDa2, Float pesoUomoSquadra) {
+			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi, Float pesoTiratoreDa3, Float pesoTiratoreDa2, Float pesoUomoSquadra, String peso, String altezza) {
 		super();
 		this.nome = nome;
 		this.squadra = squadra;
@@ -88,6 +91,9 @@ public class Giocatore {
 		setPesoTiratoreDa2Inizio(); 
 		//SET UOMOSQUADRA
 		setPesoUomoSquadra(pesoUomoSquadra);
+		
+		this.peso=peso;
+		this.altezza=altezza;
 	}
 	public String getNome() {
 		return nome;
@@ -175,6 +181,12 @@ public class Giocatore {
 	}
 	
 	
+	public String getAltezza() {
+		return altezza;
+	}
+	public String getPeso() {
+		return peso;
+	}
 	public Float getPesoScorer() {
 		return pesoScorer;
 	}

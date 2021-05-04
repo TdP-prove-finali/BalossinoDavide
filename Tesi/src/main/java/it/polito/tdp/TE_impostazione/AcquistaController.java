@@ -71,6 +71,7 @@ public class AcquistaController {
 
     @FXML
     void doIncedibili(ActionEvent event) {
+    	b=0;
     	Giocatore g=tvRoster.getSelectionModel().getSelectedItem();
     	if(g!=null && incedibili.size()<5) {
     		if(incedibili.contains(g)) {
@@ -111,37 +112,51 @@ public class AcquistaController {
     	
     	
     	if(b==0) {
+    		lbnAvviso.setText("");
     		ObservableList<Giocatore> result=FXCollections.observableArrayList();
+    		
         	result.clear();
     		b=1;
     		possibilita=model.trovaPossibilita(incedibili);
-    		
-    		
+    		if(possibilita==null) {
+    			lbnAvviso.setText("Non c'e bisogno di cedere giocatori"); ////////
+    			return;
+    		}
     		System.out.println(possibilita.size());
     		c=possibilita.size();
+    		
+    		if(c==0) {
+    			lbnAvviso.setText("Nessuna combinazione possibile");
+    			return;
+    		}
+    		
     		result.addAll(possibilita.get(0));
     		System.out.println(result.size());
     		
     		tvPossibilita.setItems(result);
     		tcAcquista1.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
-    		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
-    		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
-    		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+    		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("points"));
+    		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+    		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
     		cont++;
     		return;
     	}
     	
     	if(b==1 && c>cont) {
     		lbnAvviso.setText("");
+    		if(c==0) {
+    			lbnAvviso.setText("Nessuna combinazione possibile");
+    			return;
+    		}
     		ObservableList<Giocatore> result=FXCollections.observableArrayList();
         	result.clear();
     		if(cont==0) {
     			result.addAll(possibilita.get(0));
         		tvPossibilita.setItems(result);
         		tcAcquista1.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
-        		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
-        		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
-        		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("points"));
+        		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
         		cont++;
         		return;
     		}
@@ -149,15 +164,23 @@ public class AcquistaController {
     			result.addAll(possibilita.get(cont));
         		tvPossibilita.setItems(result);
         		tcAcquista1.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
-        		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
-        		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("points"));
-        		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcAcquista2.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("points"));
+        		tcAcquista3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
+        		tcAcquista4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
         		cont++;
         		return;
     		}
     	}
     	
     	if(b==1 && c==cont) {
+    		if(possibilita==null) {
+    			lbnAvviso.setText("Non c'e bisogno di cedere giocatori");
+    			return;
+    		}
+    		if(c==0) {
+    			lbnAvviso.setText("Nessuna combinazione possibile");
+    			return;
+    		}
     		lbnAvviso.setText("Possibilita' finite");
     		b=1;
     		cont=0;

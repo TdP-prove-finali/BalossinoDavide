@@ -2,6 +2,8 @@ package it.polito.tdp.TE_impostazione;
 
 import java.io.File;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.TE_impostazione.model.Giocatore;
@@ -57,12 +59,23 @@ public class StatController {
     	StringBuilder sb=new StringBuilder();
     	sb.append(String.format("%-30s ", "Nome:"));
     	sb.append(String.format("%-30s\n", g.getNome()));
-   // 	txtStat.appendText(sb.toString());
+    	sb.append(String.format("%-30s ", "Eta:"));
+    	sb.append(String.format("%-30s\n", g.getEta()+" anni"));
+    	sb.append(String.format("%-30s ", "Peso:"));
+    	sb.append(String.format("%-30s\n", g.getPeso()));
+    	sb.append(String.format("%-30s ", "Altezza:"));
+    	sb.append(String.format("%-30s\n", g.getAltezza()+" metri"));
     	
     	sb.append(String.format("%-30s ", "Squadra:"));
     	sb.append(String.format("%-30s\n", g.getSquadra().getNome()));
+    	
+    	NumberFormat nf = NumberFormat.getIntegerInstance( Locale.ITALIAN );
+		nf.setGroupingUsed( true );
+		String stringSalario=nf.format(g.getSalary());
     	sb.append(String.format("%-30s ", "Salary:"));
-    	sb.append(String.format("%-30d\n", g.getSalary()));
+    	sb.append(String.format("%-30s\n", stringSalario));
+    	
+    	
     	sb.append(String.format("%-30s ", "Posizione:"));
     	sb.append(String.format("%-30s\n", g.getPosizione()));
     	sb.append(String.format("%-30s ", "Partite giocate:"));

@@ -520,7 +520,6 @@ public class Model {
 		});
 		
 		for(List<Giocatore>l:liste) {
-			if(l.size()==size) {
 				
 				Collections.sort(l,new Comparator<Giocatore>(){
 					@Override
@@ -530,15 +529,39 @@ public class Model {
 						return o1.getNome().compareTo(o2.getNome());
 					}	
 				});
-				
+		/*	if(l.size()==size) {
 				int flag=0;
 				for(int i=0;i<size && flag==0;i++) {
 				if(!l.get(i).equals(result.get(i)))
 					flag=1;}
 				if(flag==0)
 					return true;
-			}
+			} */
+			
+			int flag=0;
+			int a=l.size();
+			if(a>size) {
+				
+			for(int i=0;i<size && flag==0;i++)
+				if(!l.contains(result.get(i))) 
+					flag=1;
+				if(flag==0)
+					return true;
+
 		}
+			else {
+				flag=0;
+				for(int i=0;i<a && flag==0;i++) {
+					if(!result.contains(l.get(i)))
+						flag=1;
+				}
+				if(flag==0)
+					return true;
+			}
+	      
+			
+		}
+		
 		return false;
 	}
 	
