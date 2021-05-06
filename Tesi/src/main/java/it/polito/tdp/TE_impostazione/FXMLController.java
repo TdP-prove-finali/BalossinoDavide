@@ -335,7 +335,7 @@ public class FXMLController {
     	CediController controller= loader.getController();
     	
     	Scene scene= new Scene(root);
-    	scene.getStylesheets().add("/styles/Styles.css");
+    	scene.getStylesheets().add("/styles/Cedi.css");
     	
     	Model ml=new Model();
     	for(Giocatore g:model.selezionati()) {
@@ -347,8 +347,8 @@ public class FXMLController {
     	Stage s=new Stage();
     	s.setTitle("Cedi Giocatori");
     	s.setScene(scene);
-    	s.setX(+565.0);
-    	s.setY(+500.0);
+    	s.setX(+20.0);
+    	s.setY(+50.0);
     	s.show(); }
     }
 

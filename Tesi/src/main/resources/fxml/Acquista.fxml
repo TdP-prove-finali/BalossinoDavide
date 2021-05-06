@@ -76,17 +76,17 @@
                               <Insets top="50.0" />
                            </VBox.margin>
                         </VBox>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="foto" fitHeight="164.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@generalManager2.png" />
+                              <Image url="@../../../../../../../Desktop/TESI/acquista1.jpg" />
                            </image>
                            <VBox.margin>
-                              <Insets top="140.0" />
+                              <Insets top="120.0" />
                            </VBox.margin>
                         </ImageView>
                         <Button id="btnCerca" mnemonicParsing="false" onAction="#doPossibilita" text="Cerca possibilita">
                            <VBox.margin>
-                              <Insets left="25.0" top="40.0" />
+                              <Insets left="25.0" top="55.0" />
                            </VBox.margin>
                         </Button>
                         <Label fx:id="lbnAvviso">

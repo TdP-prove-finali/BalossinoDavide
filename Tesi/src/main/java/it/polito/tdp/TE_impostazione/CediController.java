@@ -246,7 +246,7 @@ public class CediController {
 		if(model.getLivelloSalaryCap(squadra)<=model.getLimiteSalariale()) {
 		double p=model.getLivelloSalaryCap(squadra);
 		lbnSalary.setText(""+String.format("%.3f ",(p/1000000)));
-		lbnSalary.setTextFill(Color.color(0.5,0.8,0 ));} 
+		lbnSalary.setTextFill(Color.color(0, ((double)153/255), 0));} 
 		
 		if(model.getLivelloSalaryCap(squadra)>model.getLimiteSalariale()) {
 			//lbnSalary.setText(""+model.getLivelloSalaryCap(squadra)); //SECONDO ME INUTILE

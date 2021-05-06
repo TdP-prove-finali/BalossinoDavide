@@ -1,3 +1,52 @@
-#spazio{color: red}
-#lbnSalary{color: red}
-.prova{color: red}
+#idBorderPane{
+-fx-background-color: linear-gradient(to top left, #33ccff 0%, #ffffff 100%);
+}
+
+#cerca{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#dettagli{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#conferma{
+-fx-background-radius:10;
+-fx-padding: 6 8 6 8;
+
+-fx-background-color: 
+  #707070,
+  linear-gradient(#fcfcfc, #f3f3f3),
+  linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+-fx-background-insets: 0,1,2;
+
+-fx-text-fill: black;
+}
+
+#rimuovi{
+-fx-background-color: 
+  linear-gradient(#f2f2f2, #d6d6d6),
+  linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+  linear-gradient(#dddddd 0%, #f6f6f6 50%);
+
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+linear-gradient(to top left, #99ccff 0%, #ccff99 100%);

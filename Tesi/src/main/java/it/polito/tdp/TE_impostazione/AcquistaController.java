@@ -1,5 +1,6 @@
 package it.polito.tdp.TE_impostazione;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class AcquistaController {
 
@@ -32,6 +35,9 @@ public class AcquistaController {
 
     @FXML
     private Label lbnGiocatoriDaAcquistare;
+    
+    @FXML
+    private ImageView foto;
 
     @FXML
     private Label lbnListaIncedibili;
@@ -223,6 +229,9 @@ public class AcquistaController {
 		tcRoster3.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("assist"));
 		tcRoster4.setCellValueFactory(new PropertyValueFactory<Giocatore,Float>("trimb"));
 		
+		File file=new File("im/acquista1.jpg");
+		Image image=new Image(file.toURI().toString());
+		foto.setImage(image);
     	
     }
 }

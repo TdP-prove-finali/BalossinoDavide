@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #fffaf0;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.CediController">
+<BorderPane id="idBorderPane" stylesheets="@../styles/Cedi.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.CediController">
    <top>
       <Label text="GIOCATORI DA CEDERE" BorderPane.alignment="CENTER">
          <font>
@@ -66,7 +66,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Button fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
+                  <Button id="dettagli" fx:id="btnDettagli" mnemonicParsing="false" onAction="#doDettagli" text="Dettagli">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
@@ -96,7 +96,7 @@
                         <Insets right="5.0" top="2.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <Button fx:id="btnConfermaTipo" mnemonicParsing="false" onAction="#doConfermaTipo" text="Conferma">
+                  <Button id="conferma" fx:id="btnConfermaTipo" mnemonicParsing="false" onAction="#doConfermaTipo" text="Conferma">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -113,7 +113,7 @@
             </HBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tvArchetipi" prefHeight="250.0" prefWidth="280.0">
+                  <TableView fx:id="tvArchetipi" prefHeight="250.0" prefWidth="280.0" style="-fx-border-color: black;">
                     <columns>
                       <TableColumn fx:id="tcArchetipo" prefWidth="139.0" text="Archetipo" />
                       <TableColumn fx:id="tcCerca" prefWidth="140.0" text="Ruolo" />
@@ -124,7 +124,7 @@
                         <Insets left="15.0" right="15.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca">
+                        <Button id="cerca" fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca">
                            <VBox.margin>
                               <Insets left="65.0" />
                            </VBox.margin></Button>
@@ -136,13 +136,13 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Button fx:id="btnRimuovi" mnemonicParsing="false" onAction="#doRimuovi" text="Rimuovi">
+                        <Button id="rimuovi" fx:id="btnRimuovi" mnemonicParsing="false" onAction="#doRimuovi" text="Rimuovi">
                            <VBox.margin>
                               <Insets left="60.0" top="15.0" />
                            </VBox.margin></Button>
                      </children>
                   </VBox>
-                  <TableView fx:id="tvGiocatori" prefHeight="250.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tvGiocatori" prefHeight="250.0" prefWidth="280.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="tcNome" prefWidth="93.0" text="Nome" />
                       <TableColumn fx:id="tcSquadra" prefWidth="93.0" text="Squadra" />
