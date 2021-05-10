@@ -148,7 +148,7 @@ public class StatController {
     	
     	
     	sb.append(String.format("\n\n\n%-200s\n", "*Plus-Minus= Indica il rendimento di un giocatore mediante il conteggio della differenza tra punti fatti e subiti dalla sua squadra durante la permanenza in campo del giocatore stesso"));
-    	sb.append(String.format("%-200s\n", "**VORP= Acronimo di Value Over Replacement Player ed è una statistica dipendente dal Plus-Minus: si prende il valore di quest’ultima per creare un scala di valutazione univoca per tutti i giocatori"));
+    	sb.append(String.format("%-200s\n", "**VORP= Acronimo di Value Over Replacement Player ed è una statistica dipendente dal Plus-Minus: si prende il valore di quest’ultima per creare una scala di valutazione univoca per tutti i giocatori"));
     	sb.append(String.format("%-200s\n", "***Infortunato= Indica se il giocatore avesse un infortunio tale da tenerlo fuori per tutta la stagione e non poter giocare alcuna partita"));
     	
     	
