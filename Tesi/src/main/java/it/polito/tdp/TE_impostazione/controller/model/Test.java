@@ -1,9 +1,9 @@
-package it.polito.tdp.TE_impostazione.model;
+package it.polito.tdp.TE_impostazione.controller.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polito.tdp.TE_impostazione.db.SquadreDAO;
+import it.polito.tdp.TE_impostazione.controller.db.SquadreDAO;
 
 public class Test {
 

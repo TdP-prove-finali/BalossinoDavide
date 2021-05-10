@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione.db;
+package it.polito.tdp.TE_impostazione.controller.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polito.tdp.TE_impostazione.model.Archetipo;
-import it.polito.tdp.TE_impostazione.model.Giocatore;
-import it.polito.tdp.TE_impostazione.model.Squadre;
+import it.polito.tdp.TE_impostazione.controller.model.Archetipo;
+import it.polito.tdp.TE_impostazione.controller.model.Giocatore;
+import it.polito.tdp.TE_impostazione.controller.model.Squadre;
 
 public class GiocatoriDAO {
 	

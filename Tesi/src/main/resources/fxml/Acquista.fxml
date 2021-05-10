@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="idBorderPane" stylesheets="@../styles/Acquista.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.AcquistaController">
+<BorderPane id="idBorderPane" stylesheets="@../styles/Acquista.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.controller.AcquistaController">
    <top>
       <Label id="Titolo" text="ACQUISTA" BorderPane.alignment="CENTER">
          <BorderPane.margin>

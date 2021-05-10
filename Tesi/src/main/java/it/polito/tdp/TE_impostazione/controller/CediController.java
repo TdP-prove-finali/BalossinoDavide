@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione;
+package it.polito.tdp.TE_impostazione.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.TE_impostazione.model.Archetipo;
-import it.polito.tdp.TE_impostazione.model.Giocatore;
-import it.polito.tdp.TE_impostazione.model.Model;
-import it.polito.tdp.TE_impostazione.model.Squadre;
+import it.polito.tdp.TE_impostazione.controller.model.Archetipo;
+import it.polito.tdp.TE_impostazione.controller.model.Giocatore;
+import it.polito.tdp.TE_impostazione.controller.model.Model;
+import it.polito.tdp.TE_impostazione.controller.model.Squadre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

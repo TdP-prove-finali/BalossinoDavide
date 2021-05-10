@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione;
+package it.polito.tdp.TE_impostazione.controller;
 
 import java.io.File;
 import java.net.URL;
@@ -6,8 +6,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.TE_impostazione.model.Giocatore;
-import it.polito.tdp.TE_impostazione.model.Model;
+import it.polito.tdp.TE_impostazione.controller.model.Giocatore;
+import it.polito.tdp.TE_impostazione.controller.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;

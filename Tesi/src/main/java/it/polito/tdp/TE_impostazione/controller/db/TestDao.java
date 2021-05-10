@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione.db;
+package it.polito.tdp.TE_impostazione.controller.db;
 
 public class TestDao {
 

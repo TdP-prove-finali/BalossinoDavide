@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="idBorderPane" stylesheets="@../styles/Cedi.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.CediController">
+<BorderPane id="idBorderPane" stylesheets="@../styles/Cedi.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.controller.CediController">
    <top>
       <Label text="GIOCATORI DA CEDERE" BorderPane.alignment="CENTER">
          <font>

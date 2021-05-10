@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione.model;
+package it.polito.tdp.TE_impostazione.controller.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import it.polito.tdp.TE_impostazione.db.GiocatoriDAO;
-import it.polito.tdp.TE_impostazione.db.SquadreDAO;
+import it.polito.tdp.TE_impostazione.controller.db.GiocatoriDAO;
+import it.polito.tdp.TE_impostazione.controller.db.SquadreDAO;
 
 public class Model {
 	

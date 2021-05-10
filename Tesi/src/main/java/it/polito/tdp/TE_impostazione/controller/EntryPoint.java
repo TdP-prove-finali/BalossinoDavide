@@ -1,9 +1,9 @@
-package it.polito.tdp.TE_impostazione;
+package it.polito.tdp.TE_impostazione.controller;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 
-import it.polito.tdp.TE_impostazione.model.Model;
+import it.polito.tdp.TE_impostazione.controller.model.Model;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

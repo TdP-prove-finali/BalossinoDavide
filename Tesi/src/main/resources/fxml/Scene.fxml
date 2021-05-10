@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="sfondoTutto" fx:id="borderPane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.FXMLController">
+<BorderPane id="sfondoTutto" fx:id="borderPane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.TE_impostazione.controller.FXMLController">
    <bottom>
       <Button id="reset" fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Reset" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>

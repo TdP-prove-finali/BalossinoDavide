@@ -1,4 +1,4 @@
-package it.polito.tdp.TE_impostazione.model;
+package it.polito.tdp.TE_impostazione.controller.model;
 
 public class Giocatore {
 	private String nome;

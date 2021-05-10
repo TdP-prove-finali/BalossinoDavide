@@ -1,10 +1,10 @@
-package it.polito.tdp.TE_impostazione;
+package it.polito.tdp.TE_impostazione.controller;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.TE_impostazione.model.Model;
+import it.polito.tdp.TE_impostazione.controller.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
