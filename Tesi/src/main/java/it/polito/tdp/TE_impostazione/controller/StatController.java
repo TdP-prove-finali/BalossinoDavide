@@ -67,6 +67,10 @@ public class StatController {
     	sb.append(String.format("%-30s\n", g.getAltezza()+" metri"));
     	
     	sb.append(String.format("%-30s ", "Squadra:"));
+    	if(g.getSquadra()==null) {
+    		sb.append(String.format("%-30s\n", "Nessuna"));
+    	}
+    	else
     	sb.append(String.format("%-30s\n", g.getSquadra().getNome()));
     	
     	NumberFormat nf = NumberFormat.getIntegerInstance( Locale.ITALIAN );

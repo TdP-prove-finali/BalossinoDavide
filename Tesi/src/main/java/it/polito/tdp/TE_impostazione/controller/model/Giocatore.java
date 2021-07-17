@@ -18,16 +18,12 @@ public class Giocatore {
 	private Float p2_made;
 	private String p2_perce;
 	private Float p2_attemp;	
-//	Float ft_made;
-//	Float ft_perce;
-//	Float ft_attemp;
 	private Float orimb;
 	private Float drimb;
 	private Float trimb;
 	private Float assist;
 	private Float steal;
 	private Float turnovers;
-	//Float fouls;
 	private Float points;
 	private Float plus;
 	private Float vorp;
@@ -48,7 +44,7 @@ public class Giocatore {
 			Integer games_started, Float minutes_pergame, Float fg_made, Float fg_attemp, String fg_perc, Float p3_made,
 			String p3_perce, Float p3_attemp, Float p2_made, String p2_perce, Float p2_attemp, Float orimb, Float drimb,
 			Float trimb, Float assist, Float steal, Float turnovers, Float points, Float plus, Float vorp, Float blocks,
-			String inj, Float pesoScorer, Float pesoAssist, Float pesoRimbalzi, Float pesoTiratoreDa3, Float pesoTiratoreDa2, Float pesoUomoSquadra, String peso, String altezza) {
+			String inj, String peso, String altezza) {
 		super();
 		this.nome = nome;
 		this.squadra = squadra;
@@ -78,19 +74,13 @@ public class Giocatore {
 		this.vorp = vorp;
 		this.blocks = blocks;
 		this.inj = inj;
-		this.pesoScorer=pesoScorer;
-		this.pesoAssist=pesoAssist;
-		this.pesoRimbalzi=pesoRimbalzi;
 		setPesoScorer(points);
 		setPesoAssist(assist);
 		setPesoRimbalzi(trimb);
-		this.pesoTiratoreDa3=pesoTiratoreDa3;
 		setPesoTiratoreDa3Inizio();
-		this.pesoTiratoreDa2=pesoTiratoreDa2;
-		this.pesoUomoSquadra=pesoUomoSquadra;
 		setPesoTiratoreDa2Inizio(); 
 		//SET UOMOSQUADRA
-		setPesoUomoSquadra(pesoUomoSquadra);
+		setPesoUomoSquadra(vorp);
 		
 		this.peso=peso;
 		this.altezza=altezza;
@@ -224,9 +214,9 @@ public class Giocatore {
 	
 	private void setPesoTiratoreDa2Inizio() {
 		try {
-			pesoTiratoreDa3=Float.parseFloat(p3_perce);
+			pesoTiratoreDa2=Float.parseFloat(p2_perce);
 		} catch(NumberFormatException e) {
-			pesoTiratoreDa3=0f;
+			pesoTiratoreDa2=0f;
 		}
 	}
 	

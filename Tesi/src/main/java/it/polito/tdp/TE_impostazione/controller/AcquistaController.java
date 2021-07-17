@@ -123,7 +123,11 @@ public class AcquistaController {
     		
         	result.clear();
     		b=1;
+    		long inizio=System.currentTimeMillis();
     		possibilita=model.trovaPossibilita(incedibili);
+    		long fine=System.currentTimeMillis();
+        	double tempo=((double) fine-inizio)/1000;
+        	System.out.println("tempo= "+tempo);
     		if(possibilita==null) {
     			lbnAvviso.setText("Non c'e bisogno di cedere giocatori"); ////////
     			return;

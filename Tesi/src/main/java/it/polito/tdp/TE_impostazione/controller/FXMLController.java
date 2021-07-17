@@ -506,9 +506,10 @@ public class FXMLController {
     		squadraScelta=scelta;
     		lbnNumeroRoster.setText(""+l.size());
     		hbox2.setDisable(false);
-    		String salary1=""+String.format("%.3f ",((float)model.getLivelloSalaryCap(squadraScelta)/1000000));
+    		String salary1=""+String.format("%.3f ",((float)model.getSalaryCap(scelta)/1000000));
     		String salary2=""+String.format("%.3f ",((float)model.getLimiteSalariale()/1000000));
     		lbnQuantitaSalary.setText(""+salary1+" / "+salary2);
+    		
     	//	model.setSquadraScelta(squadraScelta);
     		txtGiocatore.clear();
     		tvCerca.setItems(null);

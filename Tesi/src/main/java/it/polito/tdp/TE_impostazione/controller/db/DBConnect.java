@@ -1,18 +1,40 @@
 package it.polito.tdp.TE_impostazione.controller.db;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnect {
 	
+	private static final String jdbcURL = "jdbc:mysql://localhost/nba_stats";
+	private static HikariDataSource ds;
+	
 	public static Connection getConnection() {
-		String jdbcURL="jdbc:mysql://localhost/nba_stats?user=root&password=lebron";
+		
+		if (ds == null) {
+			HikariConfig config = new HikariConfig();
+			config.setJdbcUrl(jdbcURL);
+			config.setUsername("root");
+			config.setPassword("lebron");
+			
+			// configurazione MySQL
+			config.addDataSourceProperty("cachePrepStmts", "true");
+			config.addDataSourceProperty("prepStmtCacheSize", "250");
+			config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+			
+			ds = new HikariDataSource(config);
+		}
+		
 		try {
-			Connection conn=DriverManager.getConnection(jdbcURL);
-			return conn;
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
+			
+			return ds.getConnection();
+
+		} catch (SQLException e) {
+			System.err.println("Errore connessione al DB");
+			throw new RuntimeException(e);
 		}
 	}
+
 }

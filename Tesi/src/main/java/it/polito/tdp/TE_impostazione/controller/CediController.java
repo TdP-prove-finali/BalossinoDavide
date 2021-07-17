@@ -115,10 +115,24 @@ public class CediController {
     	
     	//if(tipi.size()>0) {
     	//	System.out.println(tipi.size());
-    	//long inizio=System.currentTimeMillis();
-    	trovati.addAll(model.trovaMiglioriGiocatori(tipi, spazioSalariale));
-    	//long fine=System.currentTimeMillis();
-    	//System.out.println(fine-inizio);
+    	
+    	int numRoster=model.getRoster(model.getSquadraSelezionata()).size()-model.selezionati().size();
+    	int numero=numRoster+tipi.size();
+    	
+    	if(numero<12) {
+    		lbnAvvisi.setText("Selezionare almeno "+(12-numRoster)+" archetipi");
+    		return;
+    	}
+    	if(numero>17) {
+    		lbnAvvisi.setText("Selezionare non più di "+(17-numRoster)+" archetipi");
+    	}
+    	long inizio=System.currentTimeMillis();
+    	List<Giocatore> lg=model.trovaMiglioriGiocatori(tipi, spazioSalariale);
+    	long fine=System.currentTimeMillis();
+    	double tempo=((double) fine-inizio)/1000;
+    	System.out.println("tempo= "+tempo);
+    	trovati.addAll(lg);
+    	
     	tvGiocatori.setItems(trovati);
     	tcNome.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
     	tcSquadra.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
