@@ -63,7 +63,7 @@ public class DettagliController {
     	sb.append(String.format("%-15s ", "Stoppatore:"));
     	sb.append(String.format("%-120s\n", "Giocatore con un elevato numero di stoppate a partita"));
     	sb.append(String.format("%-15s ", "Uomo squadra:"));
-    	sb.append(String.format("%-120s\n", "Basandosi sulla statistica del plus-minus, maggiore e' il valore di tale statistica piu' il giocatore viene considerato uomo-squadra")); //////////
+    	sb.append(String.format("%-120s\n", "Basandosi sulla statistica del plus-minus, maggiore è il valore di tale statistica più il giocatore viene considerato uomo-squadra"));
     	sb.append(String.format("%-15s ", "Tiratore da 3:"));
     	sb.append(String.format("%-120s\n", "Giocatore con un elevata percentuale del tiro da 3 punti e con un numero di tentativi significativo"));
     	sb.append(String.format("%-15s ", "Tiratore da 2:"));

@@ -59,7 +59,7 @@ public class StatController {
     	StringBuilder sb=new StringBuilder();
     	sb.append(String.format("%-30s ", "Nome:"));
     	sb.append(String.format("%-30s\n", g.getNome()));
-    	sb.append(String.format("%-30s ", "Eta:"));
+    	sb.append(String.format("%-30s ", "Età:"));
     	sb.append(String.format("%-30s\n", g.getEta()+" anni"));
     	sb.append(String.format("%-30s ", "Peso:"));
     	sb.append(String.format("%-30s\n", g.getPeso()));
@@ -73,11 +73,8 @@ public class StatController {
     	else
     	sb.append(String.format("%-30s\n", g.getSquadra().getNome()));
     	
-    	NumberFormat nf = NumberFormat.getIntegerInstance( Locale.ITALIAN );
-		nf.setGroupingUsed( true );
-		String stringSalario=nf.format(g.getSalary());
     	sb.append(String.format("%-30s ", "Salary:"));
-    	sb.append(String.format("%-30s\n", stringSalario));
+    	sb.append(String.format("%-30s\n", g.getStringSalario()));
     	
     	
     	sb.append(String.format("%-30s ", "Posizione:"));

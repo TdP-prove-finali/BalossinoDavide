@@ -89,7 +89,7 @@
                               <Insets left="25.0" top="55.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="lbnAvviso">
+                        <Label fx:id="lbnAvviso" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>

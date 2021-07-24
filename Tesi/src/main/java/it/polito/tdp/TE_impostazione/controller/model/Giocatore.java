@@ -1,5 +1,9 @@
 package it.polito.tdp.TE_impostazione.controller.model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
+
 public class Giocatore {
 	private String nome;
 	private Squadre squadra;
@@ -39,6 +43,7 @@ public class Giocatore {
 	
 	private String altezza;
 	private String peso;
+	private String stringSalario;
 	
 	public Giocatore(String nome, Squadre squadra, Integer eta, Integer salary, String posizione, Integer games_palyed,
 			Integer games_started, Float minutes_pergame, Float fg_made, Float fg_attemp, String fg_perc, Float p3_made,
@@ -84,6 +89,9 @@ public class Giocatore {
 		
 		this.peso=peso;
 		this.altezza=altezza;
+		NumberFormat nf = NumberFormat.getIntegerInstance( Locale.ITALIAN );
+		nf.setGroupingUsed(true);
+		stringSalario=nf.format(salary);
 	}
 	public String getNome() {
 		return nome;
@@ -171,6 +179,9 @@ public class Giocatore {
 	}
 	
 	
+	public String getStringSalario() {
+		return stringSalario;
+	}
 	public String getAltezza() {
 		return altezza;
 	}

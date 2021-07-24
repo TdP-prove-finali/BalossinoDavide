@@ -284,7 +284,7 @@ public class FXMLController {
     	s.setTitle("Statistiche avanzate");
     	s.setScene(scene);
     	s.setX(+565.0);
-    	s.setY(+500.0);
+    	s.setY(+250.0);
     	s.show();
     	}
     	
@@ -676,7 +676,7 @@ public class FXMLController {
         	Stage s=new Stage();
         	s.setTitle("Acquista Giocatori");
         	s.setScene(scene);
-        	s.setX(+600.0);
+        	s.setX(+500.0);
         	s.setY(+5.0);
         	s.show(); }
     }
@@ -725,7 +725,7 @@ public class FXMLController {
     	s.setTitle("Statistiche avanzate");
     	s.setScene(scene);
     	s.setX(+565.0);
-    	s.setY(+500.0);
+    	s.setY(+250.0);
     	s.show();
     	}
     }    
@@ -733,7 +733,23 @@ public class FXMLController {
     
     @FXML
     void doReset(ActionEvent event) {
-
+    	txtGiocatore.clear();
+		tvCerca.setItems(null);
+		lbnRicercaGiocatore.setText("");
+		txtMaxSalary.clear();
+		bxGuardia.setSelected(true);
+		bxForward.setSelected(true);
+		bxCentro.setSelected(true);
+		boxCaratteristiche.setValue(null);
+		model.riazzeraModel();
+		setLabelDaCedere();
+		setLabelDaAcquistare();
+		boxSquadra.setValue(null);
+		tvRoster.setItems(null);
+        immEst.setImage(estlogo);
+		immWest.setImage(westlogo);
+		lbnNumeroRoster.setText("");
+		lbnQuantitaSalary.setText("");
     }
 
    

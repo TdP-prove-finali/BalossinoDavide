@@ -101,7 +101,7 @@ public class CediController {
     private TableColumn<Giocatore, String> tcSquadra;
 
     @FXML
-    private TableColumn<Giocatore, Integer> tcIngaggio;
+    private TableColumn<Giocatore, String> tcIngaggio;
     
     private ObservableList<Archetipo> tipi=FXCollections.observableArrayList(); 
     private Integer spazioSalariale;
@@ -136,7 +136,7 @@ public class CediController {
     	tvGiocatori.setItems(trovati);
     	tcNome.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("nome"));
     	tcSquadra.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("squadra"));
-    	tcIngaggio.setCellValueFactory(new PropertyValueFactory<Giocatore,Integer>("salary"));
+    	tcIngaggio.setCellValueFactory(new PropertyValueFactory<Giocatore,String>("stringSalario"));
     //	System.out.println(trovati.size());
     }
 
@@ -161,7 +161,7 @@ public class CediController {
     		if(!bxGuardia.isSelected() && !bxForward.isSelected() && bxCentro.isSelected())
     			ruolo=ruolo+"C";
     		String tipo=boxCaratteristiche.getValue();
-    		if(tipo==null) { //////////AAAAAAAAAAAAAAAAAAAAAAAAAA
+    		if(tipo==null) { 
     			lbnAvvisi.setText("Selezionare un archetipo");
         		return;
     		}

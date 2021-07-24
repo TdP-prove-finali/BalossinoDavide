@@ -129,7 +129,7 @@ public class AcquistaController {
         	double tempo=((double) fine-inizio)/1000;
         	System.out.println("tempo= "+tempo);
     		if(possibilita==null) {
-    			lbnAvviso.setText("Non c'e bisogno di cedere giocatori"); ////////
+    			lbnAvviso.setText("Non c'è bisogno di cedere giocatori"); 
     			return;
     		}
     		System.out.println(possibilita.size());
@@ -184,14 +184,14 @@ public class AcquistaController {
     	
     	if(b==1 && c==cont) {
     		if(possibilita==null) {
-    			lbnAvviso.setText("Non c'e bisogno di cedere giocatori");
+    			lbnAvviso.setText("Non c'è bisogno di cedere giocatori");
     			return;
     		}
     		if(c==0) {
     			lbnAvviso.setText("Nessuna combinazione possibile");
     			return;
     		}
-    		lbnAvviso.setText("Possibilita' finite");
+    		lbnAvviso.setText("Possibilità finite");
     		b=1;
     		cont=0;
     	}
